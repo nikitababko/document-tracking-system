@@ -1,0 +1,135 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { showErrMsg, showSuccessMsg } from 'utils/notifications';
+import { isEmpty, isEmail, isLength, isMatch } from 'utils/validations';
+
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
+  cf_password: '',
+  err: '',
+  success: '',
+};
+
+const Register = () => {
+  const [user, setUser] = useState(initialState);
+
+  const { name, email, password, cf_password, err, success } = user;
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value, err: '', success: '' });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (isEmpty(name) || isEmpty(password)) {
+      return setUser({ ...user, err: 'Заполните все поля.', success: '' });
+    }
+    if (!isEmail(email)) {
+      return setUser({
+        ...user,
+        err: 'Недействительный email.',
+        success: '',
+      });
+    }
+
+    if (isLength(password))
+      return setUser({
+        ...user,
+        err: 'Пароль должен быть не менее 6 символов.',
+        success: '',
+      });
+
+    if (!isMatch(password, cf_password)) {
+      return setUser({
+        ...user,
+        err: 'Пароли не совпадают.',
+        success: '',
+      });
+    }
+
+    try {
+      const res = await axios.post('/user/register', {
+        name,
+        email,
+        password,
+      });
+
+      setUser({ ...user, err: '', success: res.data.msg });
+    } catch (err) {
+      err.response.data.msg &&
+        setUser({ ...user, err: err.response.data.msg, success: '' });
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <h2>Регистрация</h2>
+      {err && showErrMsg(err)}
+      {success && showSuccessMsg(success)}
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="name">Имя</label>
+          <input
+            type="text"
+            placeholder="Введите имя"
+            id="name"
+            value={name}
+            name="name"
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="Введите email"
+            id="email"
+            value={email}
+            name="email"
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password">Пароль</label>
+          <input
+            type="password"
+            placeholder="Введите пароль"
+            id="password"
+            value={password}
+            name="password"
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="cf_password">Повторите пароль</label>
+          <input
+            type="password"
+            placeholder="Повторите пароль"
+            id="cf_password"
+            value={cf_password}
+            name="cf_password"
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div className="row">
+          <button type="submit">Зарегестрироваться</button>
+        </div>
+      </form>
+
+      <p>
+        Уже есть аккаунт? <Link to="/login">Login</Link>
+      </p>
+    </div>
+  );
+};
+
+export default Register;
