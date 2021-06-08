@@ -7,6 +7,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
+const fileupload = require('express-fileupload');
 
 const connectDB = require('./core/db');
 const createRoutes = require('./core/routes');
@@ -31,6 +32,8 @@ app.use(
     useTempFiles: true,
   })
 );
+app.use(fileupload());
+app.use(express.static('files'));
 
 // Register routes
 createRoutes(app);

@@ -22,7 +22,8 @@ const ForgotPassword = () => {
   };
 
   const forgotPassword = async () => {
-    if (!isEmail(email)) return setData({ ...data, err: 'Invalid emails.', success: '' });
+    if (!isEmail(email))
+      return setData({ ...data, err: 'Invalid emails.', success: '' });
 
     try {
       const res = await axios.post('/user/forgot', { email });
@@ -36,13 +37,13 @@ const ForgotPassword = () => {
 
   return (
     <div className="fg-pass">
-      <h2>Forgot Your Password?</h2>
+      <h2>Забыли пароль?</h2>
 
       <div className="row">
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
 
-        <label htmlFor="email">Enter your email address</label>
+        <label htmlFor="email">Введите свой Email</label>
         <input
           type="email"
           name="email"
@@ -50,7 +51,7 @@ const ForgotPassword = () => {
           value={email}
           onChange={handleChangeInput}
         />
-        <button onClick={forgotPassword}>Verify your email</button>
+        <button onClick={forgotPassword}>Подтвердить Email</button>
       </div>
     </div>
   );

@@ -4,3 +4,6 @@ export { default as ActivationEmail } from './ActivationEmail';
 export { default as NotFound } from './NotFound';
 export { default as ForgotPassword } from './ForgotPassword';
 export { default as ResetPassword } from './ResetPassword';
+export { default as UserManual } from './UserManual';
+export { default as TaskPage } from './Tasks/TaskPage';
+export { default as TaskCreate } from './Tasks/TaskCreate';

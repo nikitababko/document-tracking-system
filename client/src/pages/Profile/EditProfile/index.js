@@ -10,6 +10,8 @@ import {
   dispatchGetAllUsers,
 } from 'redux/actions/userAction';
 
+import initials from '../../../utils/initials';
+
 import './index.scss';
 
 const Profile = () => {
@@ -17,6 +19,8 @@ const Profile = () => {
     name: '',
     password: '',
     cf_password: '',
+    faculty: '',
+    position: '',
     err: '',
     success: '',
   };
@@ -28,7 +32,8 @@ const Profile = () => {
 
   const { user, isAdmin } = auth;
   const [data, setData] = useState(initialState);
-  const { name, password, cf_password, err, success } = data;
+  const { name, password, cf_password, err, success, faculty, position } =
+    data;
 
   const [avatar, setAvatar] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -99,13 +104,15 @@ const Profile = () => {
         {
           name: name ? name : user.name,
           avatar: avatar ? avatar : user.avatar,
+          faculty: faculty ? faculty : user.faculty,
+          position: position ? position : user.position,
         },
         {
           headers: { Authorization: token },
         }
       );
 
-      setData({ ...data, err: '', success: 'Updated Success!' });
+      setData({ ...data, err: '', success: 'Обновление успешно!' });
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: '' });
     }
@@ -142,7 +149,7 @@ const Profile = () => {
   };
 
   const handleUpdate = () => {
-    if (name || avatar) updateInfo();
+    if (name || avatar || faculty || position) updateInfo();
     if (password) updatePassword();
   };
 
@@ -238,12 +245,27 @@ const Profile = () => {
             />
           </div>
 
-          {/* <div>
-            <em style={{ color: 'crimson' }}>
-              * If you update your password here, you will not be able to
-              login quickly using google and facebook.
-            </em>
-          </div> */}
+          <div className="form-group">
+            <label htmlFor="faculty">Факультет</label>
+            <input
+              name="faculty"
+              id="faculty"
+              placeholder="Факультет"
+              defaultValue={user.faculty}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="position">Позиция</label>
+            <input
+              name="position"
+              id="position"
+              placeholder="Позиция"
+              defaultValue={user.position}
+              onChange={handleChange}
+            />
+          </div>
 
           <button disabled={loading} onClick={handleUpdate}>
             Обновить

@@ -32,6 +32,9 @@ const Header = () => {
             <Link to="/profile">Профиль</Link>
           </li>
           <li>
+            <Link to="/tasks">Задачи</Link>
+          </li>
+          <li>
             <Link to="/" onClick={handleLogout}>
               Выйти
             </Link>
@@ -51,8 +54,8 @@ const Header = () => {
         <div className="logo">
           <h1>
             <svg
-              width="85"
-              height="85"
+              width="60"
+              height="60"
               viewBox="0 0 85 85"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +66,7 @@ const Header = () => {
               />
             </svg>
 
-            <Link to="/">Калякина Дарья Провна</Link>
+            <Link to="/">{user.name}</Link>
           </h1>
         </div>
 
@@ -73,7 +76,11 @@ const Header = () => {
               <i className="fas fa-home"></i> Домашная страница
             </Link>
           </li>
-
+          <li>
+            <Link to="/user_manual">
+              <i class="far fa-file-alt"></i> Руководство пользователя
+            </Link>
+          </li>
           {isLogged ? (
             userLink()
           ) : (

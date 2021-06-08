@@ -17,6 +17,14 @@ const UserSchema = new Schema(
       type: String,
       require: [true, 'Please enter your password!'],
     },
+    faculty: {
+      type: String,
+      require: [true, 'Please enter your faculty!'],
+    },
+    position: {
+      type: String,
+      require: [true, 'Please enter your position!'],
+    },
     role: {
       type: Number,
       default: 0,

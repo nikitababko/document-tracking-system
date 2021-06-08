@@ -96,7 +96,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <h2>Войти</h2>
+      <h2>Авторизация</h2>
 
       {err && showErrMsg(err)}
       {success && showSuccessMsg(success)}

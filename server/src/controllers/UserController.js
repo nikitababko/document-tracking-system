@@ -23,7 +23,7 @@ const UserController = {
   // Register
   register: async (req, res) => {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password, faculty, position } = req.body;
 
       if (!name || !email || !password) {
         return res.status(400).json({
@@ -62,15 +62,17 @@ const UserController = {
         name,
         email,
         password: passwordHash,
+        faculty,
+        position,
       };
 
       const activation_token = createActivationToken(newUser);
 
       const url = `${CLIENT_URL}/user/activate/${activation_token}`;
-      sendMail(email, url, 'Verify your email address');
+      sendMail(email, url, 'Подтвердите свой Email');
 
       res.json({
-        msg: 'Register Success! Please activate your email to start.',
+        msg: 'Регистрация прошла успешно. Проверьте свой Email.',
       });
     } catch (error) {
       return res.status(500).json({
@@ -88,7 +90,7 @@ const UserController = {
         process.env.ACTIVATION_TOKEN_SECRET
       );
 
-      const { name, email, password } = user;
+      const { name, email, password, faculty, position } = user;
 
       const check = await UserModel.findOne({ email });
       if (check) {
@@ -99,6 +101,8 @@ const UserController = {
         name,
         email,
         password,
+        faculty,
+        position,
       });
 
       await newUser.save();
@@ -260,12 +264,14 @@ const UserController = {
   // User update
   updateUser: async (req, res) => {
     try {
-      const { name, avatar } = req.body;
+      const { name, avatar, faculty, position } = req.body;
       await UserModel.findOneAndUpdate(
         { _id: req.user.id },
         {
           name,
           avatar,
+          faculty,
+          position,
         }
       );
 

@@ -9,6 +9,8 @@ const initialState = {
   email: '',
   password: '',
   cf_password: '',
+  faculty: '',
+  position: '',
   err: '',
   success: '',
 };
@@ -16,7 +18,16 @@ const initialState = {
 const Register = () => {
   const [user, setUser] = useState(initialState);
 
-  const { name, email, password, cf_password, err, success } = user;
+  const {
+    name,
+    email,
+    password,
+    cf_password,
+    err,
+    success,
+    faculty,
+    position,
+  } = user;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -56,6 +67,8 @@ const Register = () => {
         name,
         email,
         password,
+        faculty,
+        position,
       });
 
       setUser({ ...user, err: '', success: res.data.msg });
@@ -73,10 +86,10 @@ const Register = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Имя</label>
+          <label htmlFor="name">ФИО</label>
           <input
             type="text"
-            placeholder="Введите имя"
+            placeholder="Введите ФИО"
             id="name"
             value={name}
             name="name"
@@ -120,13 +133,66 @@ const Register = () => {
           />
         </div>
 
+        <div>
+          <label htmlFor="faculty">Выбор факультета</label>
+
+          <select
+            id="faculty"
+            name="faculty"
+            onChange={handleChangeInput}
+            value={faculty}
+            required
+          >
+            <option value="" selected disabled hidden>
+              Выбор факультета
+            </option>
+            <option value="ЭМФ">ГТФ</option>
+            <option value="ГТФ">ИМА</option>
+            <option value="ГТФ">СМФ</option>
+            <option value="ГТФ">ФУВТ</option>
+            <option value="ГТФ">ЭМФ</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="position">Позиция</label>
+
+          <select
+            id="position"
+            name="position"
+            onChange={handleChangeInput}
+            value={position}
+            required
+          >
+            <option value="" selected disabled hidden>
+              Позиция
+            </option>
+            <option value="Автор">Автор</option>{' '}
+            <option value="Представитель учебно-методического совета факультета">
+              Представитель учебно-методического совета факультета
+            </option>
+            <option value="Представитель библиотеки">
+              Представитель библиотеки
+            </option>
+            <option value="Представитель редакционного совета факультета">
+              Представитель редакционного совета факультета
+            </option>
+            <option value="Представитель редакции">
+              Представитель редакции
+            </option>
+            <option value="Представитель типографии">
+              Представитель типографии
+            </option>
+          </select>
+        </div>
+
         <div className="row">
           <button type="submit">Зарегестрироваться</button>
         </div>
       </form>
 
       <p>
-        Уже есть аккаунт? <Link to="/login">Login</Link>
+        Уже есть аккаунт? <Link to="/login">Войти</Link>
       </p>
     </div>
   );

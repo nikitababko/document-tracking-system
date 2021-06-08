@@ -3,7 +3,15 @@ import { Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Login, Register } from 'pages/Auth';
-import { ActivationEmail, ForgotPassword, NotFound, ResetPassword } from 'components';
+import {
+  ActivationEmail,
+  ForgotPassword,
+  NotFound,
+  ResetPassword,
+  TaskCreate,
+  TaskPage,
+  UserManual,
+} from 'components';
 import { EditProfile, EditUser } from 'pages/Profile';
 import Home from 'pages/Home';
 
@@ -13,34 +21,72 @@ const Body = () => {
 
   return (
     <section>
-      <Switch>
-        {/* 
+      <div className="container">
+        <Switch>
+          {/* 
           // TODO Create conditional for redirect to /home...
         */}
 
-        <Route exact path="/" component={Home} />
+          <Route exact path="/" component={Home} />
 
-        <Route exact path="/login" component={isLogged ? NotFound : Login} />
-        <Route exact path="/register" component={isLogged ? NotFound : Register} />
-        <Route
-          exact
-          path="/user/activate/:activation_token"
-          component={ActivationEmail}
-        />
-        <Route exact path="/profile" component={isLogged ? EditProfile : NotFound} />
-        <Route exact path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} />
+          <Route exact path="/user_manual" component={UserManual} />
 
-        <Route
+          <Route
+            exact
+            path="/login"
+            component={isLogged ? NotFound : Login}
+          />
+
+          <Route
+            exact
+            path="/register"
+            component={isLogged ? NotFound : Register}
+          />
+
+          <Route
+            exact
+            path="/user/activate/:activation_token"
+            component={ActivationEmail}
+          />
+
+          <Route
+            exact
+            path="/profile"
+            component={isLogged ? EditProfile : NotFound}
+          />
+
+          {/* Tasks */}
+          <Route
+            exact
+            path="/tasks"
+            component={isLogged ? TaskPage : NotFound}
+          />
+
+          {/* <Route
           exact
-          path="/forgot_password"
-          component={isLogged ? NotFound : ForgotPassword}
-        />
-        <Route
-          exact
-          path="/user/reset/:token"
-          component={isLogged ? NotFound : ResetPassword}
-        />
-      </Switch>
+          path="/tasks/create"
+          component={isLogged ? TaskCreate : NotFound}
+        /> */}
+
+          <Route
+            exact
+            path="/edit_user/:id"
+            component={isAdmin ? EditUser : NotFound}
+          />
+
+          <Route
+            exact
+            path="/forgot_password"
+            component={isLogged ? NotFound : ForgotPassword}
+          />
+
+          <Route
+            exact
+            path="/user/reset/:token"
+            component={isLogged ? NotFound : ResetPassword}
+          />
+        </Switch>
+      </div>
     </section>
   );
 };
