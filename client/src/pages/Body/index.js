@@ -15,12 +15,14 @@ import {
 import { EditProfile, EditUser } from 'pages/Profile';
 import Home from 'pages/Home';
 
+import './index.scss';
+
 const Body = () => {
   const auth = useSelector((state) => state.auth);
   const { isLogged, isAdmin } = auth;
 
   return (
-    <section>
+    <section className="body">
       <div className="container">
         <Switch>
           {/* 
