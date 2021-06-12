@@ -146,11 +146,11 @@ const Register = () => {
             <option value="" selected disabled hidden>
               Выбор факультета
             </option>
-            <option value="ЭМФ">ГТФ</option>
-            <option value="ГТФ">ИМА</option>
-            <option value="ГТФ">СМФ</option>
-            <option value="ГТФ">ФУВТ</option>
-            <option value="ГТФ">ЭМФ</option>
+            <option value="ГТФ">ГТФ</option>
+            <option value="ИМА">ИМА</option>
+            <option value="СМФ">СМФ</option>
+            <option value="ФУВТ">ФУВТ</option>
+            <option value="ЭМФ">ЭМФ</option>
           </select>
         </div>
 
