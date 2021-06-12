@@ -272,49 +272,51 @@ const Profile = () => {
           </button>
         </div>
 
-        <div className="col-right">
-          <h2>{isAdmin ? 'Пользователи' : 'Пользователи'}</h2>
+        {isAdmin ? (
+          <div className="col-right">
+            <h2>Пользователи</h2>
 
-          <div style={{ overflowX: 'auto' }}>
-            <table className="customers">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Имя</th>
-                  <th>Email</th>
-                  <th>Админ</th>
-                  <th>Действие</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user._id}>
-                    <td>{user._id}</td>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      {user.role === 1 ? (
-                        <i className="fas fa-check" title="Admin"></i>
-                      ) : (
-                        <i className="fas fa-times" title="User"></i>
-                      )}
-                    </td>
-                    <td>
-                      <Link to={`/edit_user/${user._id}`}>
-                        <i className="fas fa-edit" title="Edit"></i>
-                      </Link>
-                      <i
-                        className="fas fa-trash-alt"
-                        title="Remove"
-                        onClick={() => handleDelete(user._id)}
-                      ></i>
-                    </td>
+            <div style={{ overflowX: 'auto' }}>
+              <table className="customers">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Email</th>
+                    <th>Админ</th>
+                    <th>Действие</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user._id}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        {user.role === 1 ? (
+                          <i className="fas fa-check" title="Admin"></i>
+                        ) : (
+                          <i className="fas fa-times" title="User"></i>
+                        )}
+                      </td>
+                      <td>
+                        <Link to={`/edit_user/${user._id}`}>
+                          <i className="fas fa-edit" title="Edit"></i>
+                        </Link>
+                        <i
+                          className="fas fa-trash-alt"
+                          title="Remove"
+                          onClick={() => handleDelete(user._id)}
+                        ></i>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </>
   );
