@@ -1,10 +1,3 @@
-input,
-select {
-  background-color: #f3f4f6;
-  color: #636363;
-  border-radius: 13px;
-}
-
 @import 'antd/dist/antd.css';
 
 // Reset
@@ -28,6 +21,22 @@ img {
   vertical-align: baseline;
 }
 //=======================//
+
+// .App {
+//   height: 100vh;
+// }
+
+input,
+select,
+textarea {
+  background-color: #f3f4f6;
+  color: #636363;
+  border-radius: 13px;
+}
+
+textarea {
+  padding: 10px !important;
+}
 
 .container {
   align-items: center;
