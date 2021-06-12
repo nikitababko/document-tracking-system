@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -7,11 +8,13 @@ import './index.scss';
 
 const TaskCreate = ({ filesArray, setFilesArray }) => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [comment, setComment] = useState('');
   // const [filesArray, setFilesArray] = useState([]);
+
+  const { auth } = useSelector((state) => state);
 
   const addToFilesArray = () => {
     setFilesArray([...filesArray, selectedFile]);
-    console.log(selectedFile.type);
   };
 
   const onFileChange = (event) => {
@@ -34,14 +37,33 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
   //   ));
   // };
 
-  const onFileUpload = () => {
-    addToFilesArray();
-    // testArr(filesArray);
-    const formData = new FormData();
+  const onFileUpload = async () => {
+    try {
+      addToFilesArray();
+      const formData = new FormData();
 
-    formData.append('myFile', selectedFile, selectedFile.name);
+      const fileData = {
+        name: selectedFile.name,
+        lastModified: selectedFile.lastModified,
+        size: selectedFile.size,
+        type: transformType(selectedFile),
+        position: auth.user.position,
+        faculty: auth.user.faculty,
+        comment,
+        userId: auth.user._id,
+      };
 
-    axios.post('/user/upload_document', formData);
+      formData.append('file', selectedFile);
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      };
+
+      await axios.post('/user/upload_document', fileData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // const transformType = (selectedFile) => {
@@ -60,14 +82,20 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
     }
   };
 
-  console.log(selectedFile);
-
   return (
     <div className="tasks__create">
       <h2 className="title">Загрузите документы для отправки отправки</h2>
       <div>
         <div className="btns-wrapper">
-          <input type="file" onChange={onFileChange} />
+          <div className="input-wrapper">
+            <input type="file" onChange={onFileChange} />
+            {!selectedFile && <span className="text">Файл не выбран</span>}
+          </div>
+
+          <label>
+            Введите свой комметарий
+            <textarea onChange={(e) => setComment(e.target.value)} />
+          </label>
           <button className="btn">Отмена</button>
           <button className="btn" onClick={onFileUpload}>
             Отправить
