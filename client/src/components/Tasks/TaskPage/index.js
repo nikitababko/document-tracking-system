@@ -11,7 +11,7 @@ import {
 
 import './index.scss';
 import { NotFound, TaskCreate } from 'components';
-import TaskRight from '../TasksRight';
+import TaskNew from '../TaskNew';
 
 const TaskPage = () => {
   /**
@@ -86,11 +86,7 @@ const TaskPage = () => {
         </div>
 
         <div className="tasks__rigth">
-          <Route
-            exact
-            path="/tasks/create"
-            // component={isLogged ? TaskCreate : NotFound}
-          >
+          <Route exact path="/tasks/create">
             {isLogged ? (
               <TaskCreate
                 filesArray={filesArray}
@@ -99,6 +95,10 @@ const TaskPage = () => {
             ) : (
               NotFound
             )}
+          </Route>
+
+          <Route exact path="/tasks/new">
+            {isLogged ? <TaskNew /> : NotFound}
           </Route>
         </div>
       </Router>
