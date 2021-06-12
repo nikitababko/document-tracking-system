@@ -1,211 +1,57 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import {
-  Collapse,
-  Steps,
-  Divider,
-  Input,
-  Upload,
-  Modal,
-  message,
-  Table,
-  Tag,
-  Space,
-  Button,
-} from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Carousel } from 'antd';
 
-import documentSvg from 'images/document.svg';
-import 'index.scss';
+import firstImage from 'images/home/1.png';
+import secondImage from 'images/home/2.jpg';
+import thirdImage from 'images/home/3.jpg';
+import fourthImage from 'images/home/4.jpg';
+import fifthImage from 'images/home/5.png';
+import sixthImage from 'images/home/6.jpg';
 
-function Home() {
-  const auth = useSelector((state) => state.auth);
+import './index.scss';
 
-  const callback = (key) => {
-    console.log(key);
-  };
-  // Antd
-  const { Panel } = Collapse;
-  const text = `
-    A dog is a type of domesticated animal.
-    Known for its loyalty and faithfulness,
-    it can be found as a welcome guest in many households across the world.
-  `;
-
-  // Steps
-  const { Step } = Steps;
-
-  const [stepState, setStepState] = useState(0);
-  const nextStep = () => {
-    setStepState(stepState + 1);
-  };
-  const prevStep = () => {
-    setStepState(stepState - 1);
-  };
-
-  console.log(stepState);
-
-  // Search
-  const { Search } = Input;
-  const onSearch = (value) => console.log(value);
-
-  // Table
-  const columns = [
-    {
-      title: 'Номер',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Дата',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Автор',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Статус',
-      key: 'tags',
-      dataIndex: 'tags',
-    },
-  ];
-
-  const data = [
-    {
-      key: '1',
-      name: '8725096502756',
-      age: '26.12.2021',
-      address: 'Калякина Дарья Провна',
-      tags: 'Завершен',
-    },
-  ];
-
-  // const testArray = document.querySelectorAll('.ant-steps-item');
-  // const classesArray = (array) => {
-  //   return array.map((element) => console.log(element.accessKey));
-  // };
-  // classesArray(testArray);
-  // console.log(testArray);
-
+const Home = () => {
   return (
-    <div className="App">
-      <div className="block-document">
-        <div className="follow">
-          <h2>Отслеживание</h2>
+    <div className="home">
+      <h2>
+        Добро пожаловать в информационную систему документооборота ФГБОУ ВО
+        “СГУВТ”
+      </h2>
 
-          <Search
-            placeholder="Поиск документа"
-            onSearch={onSearch}
-            enterButton
-          />
-
-          <Button onClick={prevStep}>Prev</Button>
-          <Button onClick={nextStep}>Next</Button>
-
-          <Table columns={columns} dataSource={data} />
-          <Collapse defaultActiveKey={['1']} onChange={callback}>
-            <Panel header="Путь документа" key="1">
-              <div className="author-name">
-                <span className="author-name__title">Автор</span>
-                <div className="author-name__fio">{auth.user.name}</div>
-              </div>
-              <div className="document-date-wrapper">
-                <div className="document-date">
-                  30.03.2021 <div>19:38</div>
-                </div>
-                <div className="document-date">
-                  12.05.2021 <div>18:38</div>
-                </div>
-                <div className="document-date">
-                  N.N.N <div>N:N</div>
-                </div>
-                <div className="document-date">
-                  N.N.N <div>N:N</div>
-                </div>
-                <div className="document-date">
-                  N.N.N <div>N:N</div>
-                </div>
-                <div className="document-date">
-                  N.N.N <div>N:N</div>
-                </div>
-              </div>
-              <Steps
-                // progressDot
-                current={stepState}
-                direction="vertical"
-              >
-                <Step
-                  className="step-invisible"
-                  title={
-                    stepState === 0
-                      ? 'Ожидание'
-                      : stepState > 0
-                      ? 'Завершено'
-                      : 'В процессе'
-                  }
-                  description="Автор отправил документы 
-        в учебно-методический совет факультета."
-                  // icon={<img src={documentSvg} />}
-                  // status={
-                  //   stepState === 0
-                  //     ? 'current'
-                  //     : stepState > 0
-                  //     ? 'wait'
-                  //     : 'process'
-                  // }
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены из
-        учебно-методического совета факультета
-        в библиотеку."
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены из
-        библиотеки в редакционный совет
-        университета."
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены из
-                  редакционного совета университета 
-                  к заведующему библиотекой."
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены  от заведующего
-                  библиотекой в редакцию."
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены  из редакции
-                  в типографию."
-                />
-                <Step
-                  title="Ожидание"
-                  description="Документы оправлены  из редакции
-                  в типографию."
-                />
-              </Steps>
-            </Panel>
-          </Collapse>
+      <Carousel autoplay>
+        <div>
+          <div className="carousel-item">
+            <img src={firstImage} alt="firstImage" />
+          </div>
         </div>
-      </div>
+        <div>
+          <div className="carousel-item">
+            <img src={secondImage} alt="secondImage" />
+          </div>
+        </div>
+        <div>
+          <div className="carousel-item">
+            <img src={thirdImage} alt="thirdImage" />
+          </div>
+        </div>
+        <div>
+          <div className="carousel-item">
+            <img src={fourthImage} alt="fourthImage" />
+          </div>
+        </div>
+        <div>
+          <div className="carousel-item">
+            <img src={fifthImage} alt="fifthImage" />
+          </div>
+        </div>
+        <div>
+          <div className="carousel-item">
+            <img src={sixthImage} alt="sixthImage" />
+          </div>
+        </div>
+      </Carousel>
     </div>
   );
-}
+};
 
 export default Home;
-
-{
-  /* <h2>
-Добро пожаловать в информационную систему документооборота ФГБОУ ВО
-“СГУВТ”
-</h2> */
-}

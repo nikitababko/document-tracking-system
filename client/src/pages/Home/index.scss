@@ -1,14 +1,20 @@
-.home-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 200px);
-
+.home {
   h2 {
-    width: 500px;
-    margin: 10px 0;
+    width: 600px;
+    margin: 10px auto 60px !important;
     text-align: center;
     font-size: 2rem;
     color: #667eea;
   }
+
+  .carousel-item {
+    height: 340px;
+  }
+
+  // .slick-dots {
+  //   padding: 10px;
+  //   transform: translateY(30px);
+
+  //   background: #6364a7;
+  // }
 }
