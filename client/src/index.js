@@ -7,11 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import DataProvider from 'redux/store';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <DataProvider>
-      <App />
-    </DataProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <DataProvider>
+    <App />
+  </DataProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
