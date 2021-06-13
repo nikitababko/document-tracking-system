@@ -13,17 +13,24 @@ import {
   Button,
 } from 'antd';
 
+import image from 'images/user-manual/image.svg';
+
 import './index.scss';
 
 const UserManual = () => {
   const { Panel } = Collapse;
-  function callback(key) {
-    console.log(key);
-  }
 
   return (
     <div className="user-manual">
-      <Collapse defaultActiveKey={['1']} onChange={callback}>
+      <div className="image-wrapper">
+        <img src={image} alt="Image" />
+      </div>
+
+      <h2>Руководство пользователя</h2>
+
+      <i class="fas fa-hand-pointer"></i>
+
+      <Collapse>
         <Panel header="Автор" key="1">
           <p>Руководство для автора</p>
         </Panel>
