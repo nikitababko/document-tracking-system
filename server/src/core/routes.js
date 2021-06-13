@@ -73,6 +73,8 @@ const createRoutes = (app) => {
     '/api/remove_document/:id',
     DocumentController.removeDocument
   );
+
+  app.patch('/api/edit_document/:id', DocumentController.editDocument);
 };
 
 module.exports = createRoutes;

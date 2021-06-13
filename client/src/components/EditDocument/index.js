@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, Button } from 'antd';
@@ -21,19 +21,40 @@ const EditDocument = () => {
   const { documents, token } = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const [name, setName] = useState('');
+
   useEffect(() => {
     dispatch(fetchAllDocuments(token));
   }, []);
 
+  // Remove document
   const handleRemove = async () => {
     try {
       const res = await axios.delete(`/api/remove_document/${id}`, {
         headers: { Authorization: token },
       });
+      history.push('/tasks');
     } catch (err) {
       console.log(err);
     }
   };
+
+  // Edit document
+  const handleEdit = async () => {
+    try {
+      const res = await axios.patch(
+        `/api/edit_document/${id}`,
+        { name },
+        {
+          headers: { Authorization: token },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log(name);
 
   const filterDocuments = (documents) => {
     return documents.allDocuments.filter((element) => element._id === id);
@@ -50,38 +71,73 @@ const EditDocument = () => {
         <div className="description">
           <h3>
             Название:{' '}
-            <span style={{ fontWeight: 400 }}>{test[0].name}</span>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={(e) => setName(e.target.value)}
+              defaultValue={test[0].name}
+            />
           </h3>
+
           <br />
           <br />
           <p>
             <strong>Номер: </strong>
-            <span>{test[0]._id}</span>
+            <input
+              type="text"
+              name="_id"
+              id="_id"
+              defaultValue={test[0]._id}
+              disabled
+            />
             <br />
           </p>
           <p>
             <strong>Загружен: </strong>
-            <span>{test[0].createdAt}</span>
+            <input
+              type="text"
+              name="createdAt"
+              id="createdAt"
+              defaultValue={test[0].createdAt}
+              disabled
+            />
             <br />
           </p>
           <p>
             <strong>Последнее изменение: </strong>
-            <span>
-              {moment(test[0].lastModifiedDate).format(
+            <input
+              type="text"
+              name="lastModifiedDate"
+              id="lastModifiedDate"
+              defaultValue={moment(test[0].lastModifiedDate).format(
                 'DD.MM.YYYY, hh:mm:ss'
               )}
-            </span>
+              disabled
+            />
             <br />
           </p>
           <p>
-            <strong>Формат: </strong>
-            <span>.{test[0].type}</span> <br />.
+            <strong>Формат: .</strong>
+            <input
+              type="text"
+              name="type"
+              id="type"
+              defaultValue={test[0].type}
+              disabled
+            />
           </p>
           <p>
             <strong>Размер: </strong>
-            <span>
-              {Math.ceil((test[0].size / 1024) * 100) / 100} Кбайт
-            </span>
+            <input
+              type="text"
+              name="size"
+              id="size"
+              defaultValue={`${
+                Math.ceil((test[0].size / 1024) * 100) / 100
+              } Кбайт`}
+              disabled
+            />
             <br />
           </p>
         </div>
@@ -96,7 +152,6 @@ const EditDocument = () => {
           type="primary"
           icon={<DeleteOutlined />}
           onClick={handleRemove}
-          danger
         >
           Удалить
         </Button>
@@ -106,16 +161,10 @@ const EditDocument = () => {
           className="button-edit"
           type="primary"
           icon={<EditOutlined />}
-          onClick={handleRemove}
-          danger
+          onClick={handleEdit}
         >
-          Удалить
+          Изменить
         </Button>
-
-        {/* <br />
-        <Button type="primary" icon={<DownloadOutlined />}>
-          Загрузить
-        </Button> */}
       </Card>
     </div>
   );

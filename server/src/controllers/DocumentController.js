@@ -76,11 +76,26 @@ const DocumentController = {
 
   removeDocument: async (req, res) => {
     try {
-      console.log(req.params.id);
-
       await DocumentModel.findByIdAndDelete(req.params.id);
 
       res.json({ msg: 'Документ удален!' });
+    } catch (err) {
+      return res.status(500).json({
+        msg: err.message,
+      });
+    }
+  },
+
+  editDocument: async (req, res) => {
+    try {
+      console.log(req.body);
+
+      await DocumentModel.findOneAndUpdate(
+        { _id: req.params.id },
+        { name: req.body.name }
+      );
+
+      res.json({ msg: 'Документ обновлен!' });
     } catch (err) {
       return res.status(500).json({
         msg: err.message,
