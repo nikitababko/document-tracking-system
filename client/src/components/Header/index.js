@@ -35,6 +35,9 @@ const Header = () => {
             <Link to="/tasks">Задачи</Link>
           </li>
           <li>
+            <Link to="/data_base">База данных</Link>
+          </li>
+          <li>
             <Link to="/" onClick={handleLogout}>
               Выйти
             </Link>
