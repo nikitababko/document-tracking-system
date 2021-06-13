@@ -8,12 +8,51 @@
     input {
       border: none;
       background-color: transparent;
-      width: 190px;
+      width: 330px;
     }
 
     .description {
-      h3 {
-        font-weight: bold;
+      h2 {
+        margin-bottom: 20px !important;
+      }
+
+      .responce-data {
+        margin-bottom: 45px;
+
+        h3 {
+          font-weight: bold;
+
+          span {
+            font-weight: 400;
+          }
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+
+          .ant-btn {
+            margin: 0 10px;
+          }
+        }
+      }
+
+      .dispatch-data {
+        margin-bottom: 45px;
+
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+
+          .ant-btn {
+            margin: 0 2px;
+
+            &:last-child {
+              margin: 10px 0;
+            }
+          }
+        }
       }
     }
 

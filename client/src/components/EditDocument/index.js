@@ -63,108 +63,150 @@ const EditDocument = () => {
 
   return (
     <div className="edit-document">
-      <Card
-        hoverable
-        style={{ width: 240 }}
-        cover={<img alt="Document image" src={documentImage} />}
-      >
+      <Card hoverable style={{ width: 240 }}>
         <div className="description">
-          <h3>
-            Название:{' '}
-            <input
-              type="text"
-              name="name"
-              id="name"
-              onChange={(e) => setName(e.target.value)}
-              defaultValue={test[0].name}
-            />
-          </h3>
+          <div className="responce-data">
+            <h2>Полученные данные: </h2>
+            <h3>
+              Название:{' '}
+              <input
+                type="text"
+                name="name"
+                id="name"
+                onChange={(e) => setName(e.target.value)}
+                defaultValue={test[0].name}
+              />
+            </h3>
 
-          <br />
-          <br />
-          <p>
-            <strong>Номер: </strong>
-            <input
-              type="text"
-              name="_id"
-              id="_id"
-              defaultValue={test[0]._id}
-              disabled
-            />
+            <h3>
+              Автор: <span>{test[0].user.name}</span>
+            </h3>
+
+            <h3>
+              Факультет: <span>{test[0].user.faculty}</span>
+            </h3>
+
             <br />
-          </p>
-          <p>
-            <strong>Загружен: </strong>
-            <input
-              type="text"
-              name="createdAt"
-              id="createdAt"
-              defaultValue={test[0].createdAt}
-              disabled
-            />
+            <p>
+              <strong>Номер: </strong>
+              <input
+                type="text"
+                name="_id"
+                id="_id"
+                defaultValue={test[0]._id}
+                disabled
+              />
+              <br />
+            </p>
+            <p>
+              <strong>Загружен: </strong>
+              <input
+                type="text"
+                name="createdAt"
+                id="createdAt"
+                defaultValue={test[0].createdAt}
+                disabled
+              />
+              <br />
+            </p>
+            <p>
+              <strong>Последнее изменение: </strong>
+              <input
+                type="text"
+                name="lastModifiedDate"
+                id="lastModifiedDate"
+                defaultValue={moment(test[0].lastModifiedDate).format(
+                  'DD.MM.YYYY, hh:mm:ss'
+                )}
+                disabled
+              />
+              <br />
+            </p>
+            <p>
+              <strong>Формат: .</strong>
+              <input
+                type="text"
+                name="type"
+                id="type"
+                defaultValue={test[0].type}
+                disabled
+              />
+            </p>
+            <p>
+              <strong>Размер: </strong>
+              <input
+                type="text"
+                name="size"
+                id="size"
+                defaultValue={`${
+                  Math.ceil((test[0].size / 1024) * 100) / 100
+                } Кбайт`}
+                disabled
+              />
+            </p>
+
+            <div>
+              <strong>Комментарий: </strong>
+              <p>{test[0].comment}</p>
+            </div>
+
+            <div className="buttons">
+              <Button type="primary" icon={<DownloadOutlined />}>
+                Скачать
+              </Button>
+
+              <Button
+                className="button-delete"
+                type="primary"
+                icon={<DeleteOutlined />}
+                onClick={handleRemove}
+              >
+                Удалить
+              </Button>
+
+              <Button
+                className="button-edit"
+                type="primary"
+                icon={<EditOutlined />}
+                onClick={handleEdit}
+              >
+                Изменить
+              </Button>
+            </div>
+          </div>
+
+          <div className="dispatch-data">
+            <h2>Данные для отправления:</h2>
+
+            <textarea
+              name=""
+              id=""
+              cols="50"
+              rows="2"
+              placeholder="Введите свой комментарий"
+            ></textarea>
+
             <br />
-          </p>
-          <p>
-            <strong>Последнее изменение: </strong>
-            <input
-              type="text"
-              name="lastModifiedDate"
-              id="lastModifiedDate"
-              defaultValue={moment(test[0].lastModifiedDate).format(
-                'DD.MM.YYYY, hh:mm:ss'
-              )}
-              disabled
-            />
             <br />
-          </p>
-          <p>
-            <strong>Формат: .</strong>
-            <input
-              type="text"
-              name="type"
-              id="type"
-              defaultValue={test[0].type}
-              disabled
-            />
-          </p>
-          <p>
-            <strong>Размер: </strong>
-            <input
-              type="text"
-              name="size"
-              id="size"
-              defaultValue={`${
-                Math.ceil((test[0].size / 1024) * 100) / 100
-              } Кбайт`}
-              disabled
-            />
-            <br />
-          </p>
+
+            <div className="buttons">
+              <Button type="primary" icon={<DownloadOutlined />}>
+                Добавить документ
+              </Button>
+
+              <Button
+                type="primary button-edit"
+                icon={<DownloadOutlined />}
+              >
+                Отправить автору на доработку
+              </Button>
+
+              <Button type="primary" icon={<DownloadOutlined />}>
+                Отправить
+              </Button>
+            </div>
+          </div>
         </div>
-
-        <Button type="primary" icon={<DownloadOutlined />}>
-          Загрузить
-        </Button>
-
-        <br />
-        <Button
-          className="button-delete"
-          type="primary"
-          icon={<DeleteOutlined />}
-          onClick={handleRemove}
-        >
-          Удалить
-        </Button>
-
-        <br />
-        <Button
-          className="button-edit"
-          type="primary"
-          icon={<EditOutlined />}
-          onClick={handleEdit}
-        >
-          Изменить
-        </Button>
       </Card>
     </div>
   );
