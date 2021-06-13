@@ -15,3 +15,26 @@ export const fetchAllDocuments = (token) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const findDocument =
+  ({ documentId, token }) =>
+  async (dispatch) => {
+    try {
+      const res = await axios.post(
+        '/api/find_document',
+        { documentId },
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      console.log(res.data.existingDocument);
+
+      dispatch({
+        type: ACTIONS.FIND_DOCUMENT,
+        payload: res.data.existingDocument,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };

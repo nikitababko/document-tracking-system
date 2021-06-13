@@ -70,19 +70,29 @@ const DataBase = () => {
 
       <Tabs defaultActiveKey="1" centered type="line">
         <TabPane tab="ЭМФ" key="1">
-          <DocumentCard filterFaculty={EMFFaculties(documents)} />
+          <DocumentCard
+            filterFaculty={EMFFaculties(documents.allDocuments)}
+          />
         </TabPane>
         <TabPane tab="ГТФ" key="2">
-          <DocumentCard filterFaculty={GTFFaculties(documents)} />
+          <DocumentCard
+            filterFaculty={GTFFaculties(documents.allDocuments)}
+          />
         </TabPane>
         <TabPane tab="ИМА" key="3">
-          <DocumentCard filterFaculty={IMAFaculties(documents)} />
+          <DocumentCard
+            filterFaculty={IMAFaculties(documents.allDocuments)}
+          />
         </TabPane>
         <TabPane tab="СМФ" key="4">
-          <DocumentCard filterFaculty={SMFFaculties(documents)} />
+          <DocumentCard
+            filterFaculty={SMFFaculties(documents.allDocuments)}
+          />
         </TabPane>
         <TabPane tab="ФУВТ" key="5">
-          <DocumentCard filterFaculty={FUFTFaculties(documents)} />
+          <DocumentCard
+            filterFaculty={FUFTFaculties(documents.allDocuments)}
+          />
         </TabPane>
       </Tabs>
     </section>

@@ -29,7 +29,7 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
   //     <tr>
   //       <td>{element.name}</td>
   //       <td>
-  //         {moment(element.lastModifiedDate).format('DD/MM/YYYY hh:mm:ss')}
+  //         {moment(element.lastModifiedDate).format('DD.MM.YYYY hh:mm:ss')}
   //       </td>
   //       <td>{element.size} Кбайт</td>
   //       <td>{element.type}</td>
@@ -119,7 +119,7 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
                   <td>{element.name}</td>
                   <td>
                     {moment(element.lastModifiedDate).format(
-                      'DD/MM/YYYY hh:mm:ss'
+                      'DD.MM.YYYY, hh:mm:ss'
                     )}
                   </td>
 

@@ -47,7 +47,12 @@ const createRoutes = (app) => {
     UserController.deleteUser
   );
 
+  // Documents
   app.post('/user/upload_document', DocumentController.uploadDocument);
+
+  app.get('/api/get_all_document', DocumentController.getAllDocuments);
+
+  app.post('/api/find_document', DocumentController.findDocument);
 };
 
 module.exports = createRoutes;

@@ -139,7 +139,7 @@ const UserController = {
       });
 
       res.json({
-        msg: 'Login success!',
+        msg: 'Авторизирован!',
       });
     } catch (err) {
       return res.status(500).json({
@@ -356,7 +356,7 @@ const UserController = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ msg: 'Login success!' });
+        res.json({ msg: 'Авторизирован!' });
       } else {
         const newUser = new UserModel({
           name,
@@ -374,7 +374,7 @@ const UserController = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ msg: 'Login success!' });
+        res.json({ msg: 'Авторизирован!' });
       }
     } catch (err) {
       return res.status(500).json({ msg: err.message });
@@ -415,7 +415,7 @@ const UserController = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ msg: 'Login success!' });
+        res.json({ msg: 'Авторизирован!' });
       } else {
         const newUser = new UserModel({
           name,
@@ -433,7 +433,7 @@ const UserController = {
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
 
-        res.json({ msg: 'Login success!' });
+        res.json({ msg: 'Авторизирован!' });
       }
     } catch (err) {
       return res.status(500).json({ msg: err.message });

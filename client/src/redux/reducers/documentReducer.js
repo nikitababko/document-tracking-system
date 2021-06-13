@@ -1,14 +1,25 @@
 import ACTIONS from '../actions/types';
 
-const documents = [];
+const initialState = {
+  allDocuments: [],
+  foundDocument: {},
+};
 
-const documentsReducer = (state = documents, action) => {
+const documentReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS.GET_ALL_DOCUMENTS:
-      return action.payload;
+      return {
+        ...state,
+        allDocuments: [...action.payload],
+      };
+    case ACTIONS.FIND_DOCUMENT:
+      return {
+        ...state,
+        foundDocument: { ...action.payload },
+      };
     default:
       return state;
   }
 };
 
-export default documentsReducer;
+export default documentReducer;

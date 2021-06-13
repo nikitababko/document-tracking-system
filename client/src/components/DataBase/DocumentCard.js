@@ -22,12 +22,12 @@ const DocumentCard = ({ filterFaculty }) => {
             <p>
               <strong>Загружен:</strong>
               <br />
-              {moment(item.createdAt).format('DD/MM/YYYY hh:mm:ss')}
+              {moment(item.createdAt).format('DD.MM.YYYY, hh:mm:ss')}
             </p>
             <p>
               <strong>Последнее изменение:</strong>
               <br />
-              {moment(item.lastModified).format('DD/MM/YYYY hh:mm:ss')}
+              {moment(item.lastModified).format('DD.MM.YYYY, hh:mm:ss')}
             </p>
             <p>
               <strong>Формат:</strong> <br /> .{item.type}
