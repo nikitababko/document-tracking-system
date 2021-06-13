@@ -19,7 +19,6 @@ export const showSuccessMsg = (msg) => {
     notification[type]({
       message: 'Успешно!',
       description: msg,
-      duration: 100000,
     });
   };
 
