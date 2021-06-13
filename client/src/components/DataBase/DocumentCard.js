@@ -20,6 +20,10 @@ const DocumentCard = ({ filterFaculty }) => {
             <br />
             <br />
             <p>
+              <strong>Номер:</strong> <br />
+              {item._id}
+            </p>
+            <p>
               <strong>Загружен:</strong>
               <br />
               {moment(item.createdAt).format('DD.MM.YYYY, hh:mm:ss')}
@@ -30,7 +34,7 @@ const DocumentCard = ({ filterFaculty }) => {
               {moment(item.lastModified).format('DD.MM.YYYY, hh:mm:ss')}
             </p>
             <p>
-              <strong>Формат:</strong> <br /> .{item.type}
+              <strong>Формат:</strong> <br />.{item.type}
             </p>
             <p>
               <strong>Размер:</strong> <br />{' '}
