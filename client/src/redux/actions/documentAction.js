@@ -37,7 +37,7 @@ export const findDocument =
         payload: res.data.existingDocument,
       });
     } catch (error) {
-      console.log(error) &&
+      console.log(error) ||
         showErrMsg('Проверьте правильность вводимого трек-номера!');
     }
   };
