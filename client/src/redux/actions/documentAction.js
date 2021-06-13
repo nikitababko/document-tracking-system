@@ -1,6 +1,8 @@
 import ACTIONS from './types';
 import axios from 'axios';
 
+import { showErrMsg, showSuccessMsg } from 'utils/notifications';
+
 export const fetchAllDocuments = (token) => async (dispatch) => {
   try {
     const res = await axios.get('/api/get_all_document', {
@@ -28,11 +30,14 @@ export const findDocument =
         }
       );
 
+      showSuccessMsg(res.data.msg);
+
       dispatch({
         type: ACTIONS.FIND_DOCUMENT,
         payload: res.data.existingDocument,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error) &&
+        showErrMsg('Проверьте правильность вводимого трек-номера!');
     }
   };
