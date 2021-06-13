@@ -2,7 +2,7 @@
   &__create {
     margin: 40px 0 0 40px;
 
-    .btns-wrapper {
+    &-inner {
       margin-top: 50px;
       display: flex;
       flex-wrap: wrap;
@@ -65,11 +65,18 @@
         }
       }
 
+      .buttons {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
       .btn {
-        margin: 0 20px 20px;
         width: 100%;
         max-width: 100px;
         border: 3px solid #6364a7;
+        border-radius: 13px;
         background-color: #e0e7ff;
       }
     }

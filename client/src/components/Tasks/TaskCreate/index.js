@@ -86,7 +86,7 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
     <div className="tasks__create">
       <h2 className="title">Загрузите документы для отправки отправки</h2>
       <div>
-        <div className="btns-wrapper">
+        <div className="tasks__create-inner">
           <div className="input-wrapper">
             <input type="file" onChange={onFileChange} />
             {!selectedFile && <span className="text">Файл не выбран</span>}
@@ -96,10 +96,13 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
             Введите свой комметарий
             <textarea onChange={(e) => setComment(e.target.value)} />
           </label>
-          <button className="btn">Отмена</button>
-          <button className="btn" onClick={onFileUpload}>
-            Отправить
-          </button>
+
+          <div className="buttons">
+            <button className="btn">Отмена</button>
+            <button className="btn" onClick={onFileUpload}>
+              Отправить
+            </button>
+          </div>
         </div>
 
         <table>
