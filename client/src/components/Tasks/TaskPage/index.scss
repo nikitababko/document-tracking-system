@@ -1,23 +1,14 @@
 .tasks {
-  .ant-menu-title-content {
-    a {
-      display: flex;
-      justify-content: space-between;
-
-      .count-wrapper {
-        position: relative;
-        top: 12px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background-color: #ff5722;
-
-        .count {
-          position: absolute;
-          top: -11px;
-          left: 5px;
-          color: #fff;
+  .ant-tabs {
+    .ant-tabs-nav-wrap {
+      .ant-tabs-tab {
+        .ant-tabs-tab-btn {
+          color: #6364a7;
         }
+      }
+
+      .ant-tabs-ink-bar {
+        background-color: #6364a7;
       }
     }
   }
