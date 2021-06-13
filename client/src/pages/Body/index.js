@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { Login, Register } from 'pages/Auth';
 import {
   ActivationEmail,
+  DataBase,
   ForgotPassword,
   NotFound,
   ResetPassword,
@@ -64,11 +65,11 @@ const Body = () => {
             component={isLogged ? TaskPage : NotFound}
           />
 
-          {/* <Route
-          exact
-          path="/tasks/create"
-          component={isLogged ? TaskCreate : NotFound}
-        /> */}
+          <Route
+            exact
+            path="/data_base"
+            component={isLogged ? DataBase : NotFound}
+          />
 
           <Route
             exact
