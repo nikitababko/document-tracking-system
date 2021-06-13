@@ -19,6 +19,8 @@ import moment from 'moment';
 import { findDocument } from 'redux/actions/documentAction';
 
 const TaskNew = () => {
+  const [stepState, setStepState] = useState(0);
+
   const { auth, token, documents } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -27,7 +29,7 @@ const TaskNew = () => {
   };
 
   Object.size = function (obj) {
-    var size = 0,
+    let size = 0,
       key;
     for (key in obj) {
       if (obj.hasOwnProperty(key)) size++;
@@ -39,7 +41,6 @@ const TaskNew = () => {
   // Steps
   const { Step } = Steps;
 
-  const [stepState, setStepState] = useState(0);
   const nextStep = () => {
     setStepState(stepState + 1);
   };
@@ -97,6 +98,7 @@ const TaskNew = () => {
       <div className="block-document">
         <div className="follow">
           <h2>Отслеживание</h2>
+          {/* {foundDocumentSize && showSuccessMsg('asasd')} */}
 
           <Search
             placeholder="Поиск документа"
