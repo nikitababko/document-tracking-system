@@ -9,6 +9,7 @@ const initialState = {
   email: '',
   password: '',
   cf_password: '',
+  phone: '',
   faculty: '',
   position: '',
   err: '',
@@ -25,6 +26,7 @@ const Register = () => {
     cf_password,
     err,
     success,
+    phone,
     faculty,
     position,
   } = user;
@@ -67,6 +69,7 @@ const Register = () => {
         name,
         email,
         password,
+        phone,
         faculty,
         position,
       });
@@ -129,6 +132,18 @@ const Register = () => {
             id="cf_password"
             value={cf_password}
             name="cf_password"
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="cf_password">Ваш контактный номер</label>
+          <input
+            type="phone"
+            placeholder="8-913-567-45-42"
+            id="phone"
+            value={phone}
+            name="phone"
             onChange={handleChangeInput}
           />
         </div>

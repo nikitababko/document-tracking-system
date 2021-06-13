@@ -23,7 +23,7 @@ const UserController = {
   // Register
   register: async (req, res) => {
     try {
-      const { name, email, password, faculty, position } = req.body;
+      const { name, email, password, phone, faculty, position } = req.body;
 
       if (!name || !email || !password) {
         return res.status(400).json({
@@ -62,6 +62,7 @@ const UserController = {
         name,
         email,
         password: passwordHash,
+        phone,
         faculty,
         position,
       };
@@ -90,7 +91,7 @@ const UserController = {
         process.env.ACTIVATION_TOKEN_SECRET
       );
 
-      const { name, email, password, faculty, position } = user;
+      const { name, email, password, phone, faculty, position } = user;
 
       const check = await UserModel.findOne({ email });
       if (check) {
@@ -101,6 +102,7 @@ const UserController = {
         name,
         email,
         password,
+        phone,
         faculty,
         position,
       });
@@ -152,7 +154,6 @@ const UserController = {
   getAccessToken: (req, res) => {
     try {
       const rf_token = req.cookies.refreshtoken;
-      console.log(rf_token);
       if (!rf_token) {
         return res.status(400).json({ msg: 'Войдите, пожалуйста!' });
       }
@@ -207,10 +208,7 @@ const UserController = {
   resetPassword: async (req, res) => {
     try {
       const { password } = req.body;
-      console.log(password);
       const passwordHash = await bcrypt.hash(password, 12);
-
-      console.log(req.user);
 
       await UserModel.findOneAndUpdate(
         { _id: req.user.id },
@@ -324,7 +322,6 @@ const UserController = {
   googleLogin: async (req, res) => {
     try {
       const { tokenId } = req.body;
-      console.log(tokenId);
 
       const verify = await client.verifyIdToken({
         idToken: tokenId,

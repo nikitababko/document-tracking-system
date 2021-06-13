@@ -13,17 +13,6 @@ const DocumentController = {
       userId,
     } = req.body;
 
-    console.log(
-      name,
-      lastModified,
-      size,
-      type,
-      position,
-      faculty,
-      comment,
-      userId
-    );
-
     try {
       const newDocument = new DocumentModel({
         name,
@@ -68,6 +57,8 @@ const DocumentController = {
       const existingDocument = await DocumentModel.findById(
         req.body.documentId
       ).populate('user', '-password');
+
+      console.log(existingDocument);
 
       res.json({
         msg: 'Документ найден!',

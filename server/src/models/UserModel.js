@@ -17,6 +17,9 @@ const UserSchema = new Schema(
       type: String,
       require: [true, 'Please enter your password!'],
     },
+    phone: {
+      type: String,
+    },
     faculty: {
       type: String,
       require: [true, 'Please enter your faculty!'],
@@ -32,7 +35,7 @@ const UserSchema = new Schema(
     avatar: {
       type: String,
       default:
-        'https://res.cloudinary.com/nikitababko/image/upload/v1616588775/Avatars/avatar_g5b8fp.png',
+        'https://res.cloudinary.com/nikitababko/image/upload/v1623578628/Avatars/mfivok.png',
     },
   },
   {

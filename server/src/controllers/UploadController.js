@@ -25,8 +25,6 @@ const UploadController = {
 
           removeTmp(file.tempFilePath);
 
-          console.log({ result });
-
           res.json({ url: result.secure_url });
         }
       );
