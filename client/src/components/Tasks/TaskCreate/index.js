@@ -3,12 +3,14 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/ru';
+import { Radio } from 'antd';
 
 import './index.scss';
 
 const TaskCreate = ({ filesArray, setFilesArray }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [comment, setComment] = useState('');
+  const [check, setCheck] = useState(0);
   // const [filesArray, setFilesArray] = useState([]);
 
   const { auth } = useSelector((state) => state);
@@ -82,6 +84,12 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
     }
   };
 
+  // Checkbox
+  const onChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setCheck(e.target.value);
+  };
+
   return (
     <div className="tasks__create">
       <h2 className="title">Загрузите документы для отправки отправки</h2>
@@ -96,6 +104,13 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
             Введите свой комметарий
             <textarea onChange={(e) => setComment(e.target.value)} />
           </label>
+
+          <div className="checkboxes">
+            <Radio.Group onChange={onChange} value={check}>
+              <Radio value={1}>Да</Radio>
+              <Radio value={2}>Нет</Radio>
+            </Radio.Group>
+          </div>
 
           <div className="buttons">
             <button className="btn">Отмена</button>
