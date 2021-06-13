@@ -33,11 +33,26 @@ const createRoutes = (app) => {
     auth,
     UploadController.uploadAvatar
   );
+
   app.patch(
     '/user/update_role/:id',
     auth,
     authAdmin,
     UserController.updateUserRole
+  );
+
+  app.patch(
+    '/user/edit_db/:id',
+    auth,
+    authAdmin,
+    UserController.updateUserEditDB
+  );
+
+  app.patch(
+    '/user/read_db/:id',
+    auth,
+    authAdmin,
+    UserController.updateUserReadDB
   );
 
   app.delete(

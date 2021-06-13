@@ -273,7 +273,7 @@ const UserController = {
         }
       );
 
-      res.json({ msg: 'Update Success!' });
+      res.json({ msg: 'Обновлено!' });
     } catch (err) {
       return res.status(500).json({
         msg: err.message,
@@ -293,7 +293,47 @@ const UserController = {
         }
       );
 
-      res.json({ msg: 'Update Success!' });
+      res.json({ msg: 'Обновлено!' });
+    } catch (err) {
+      return res.status(500).json({
+        msg: err.message,
+      });
+    }
+  },
+
+  // Update user editDB
+  updateUserEditDB: async (req, res) => {
+    try {
+      const { editDB } = req.body;
+
+      await UserModel.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          editDB,
+        }
+      );
+
+      res.json({ msg: 'Обновлено!' });
+    } catch (err) {
+      return res.status(500).json({
+        msg: err.message,
+      });
+    }
+  },
+
+  // Update user readDB
+  updateUserReadDB: async (req, res) => {
+    try {
+      const { readDB } = req.body;
+
+      await UserModel.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          readDB,
+        }
+      );
+
+      res.json({ msg: 'Обновлено!' });
     } catch (err) {
       return res.status(500).json({
         msg: err.message,

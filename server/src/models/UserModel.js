@@ -32,6 +32,14 @@ const UserSchema = new Schema(
       type: Number,
       default: 0,
     },
+    editDB: {
+      type: Number,
+      default: 0,
+    },
+    readDB: {
+      type: Number,
+      default: 0,
+    },
     avatar: {
       type: String,
       default:
