@@ -3,7 +3,7 @@ import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Tabs } from 'antd';
 
-import { NotFound, TaskCreate } from 'components';
+import { InTheProcess, NotFound, TaskCreate } from 'components';
 import { fetchAllDocuments } from 'redux/actions/documentAction';
 
 import './index.scss';
@@ -30,7 +30,7 @@ const TaskPage = () => {
     <div className="tasks">
       <Tabs defaultActiveKey="1" centered type="line" tabPosition="left">
         <TabPane tab="Выполняются" key="1">
-          фывфыв
+          <InTheProcess />
         </TabPane>
         <TabPane tab="Завершенные" key="2">
           asdasd

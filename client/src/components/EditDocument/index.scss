@@ -1,0 +1,32 @@
+.edit-document {
+  display: flex;
+  justify-content: center;
+
+  .ant-card {
+    width: 500px !important;
+
+    .description {
+      h3 {
+        font-weight: bold;
+      }
+    }
+
+    .ant-card-body {
+      display: flex;
+      flex-direction: column;
+      .ant-btn {
+        background-color: #6364a7;
+        border-color: #6364a7;
+
+        &.button-delete {
+          background-color: #d43535;
+          border-color: #d43535;
+        }
+
+        &.button-edit {
+          //
+        }
+      }
+    }
+  }
+}

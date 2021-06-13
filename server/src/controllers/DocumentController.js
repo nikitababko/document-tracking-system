@@ -39,7 +39,10 @@ const DocumentController = {
 
   getAllDocuments: async (req, res) => {
     try {
-      const allDocuments = await DocumentModel.find();
+      const allDocuments = await DocumentModel.find().populate(
+        'user',
+        '-password'
+      );
 
       res.json({
         msg: 'Документы получены!',
@@ -64,6 +67,20 @@ const DocumentController = {
         msg: 'Документ найден!',
         existingDocument,
       });
+    } catch (err) {
+      return res.status(500).json({
+        msg: err.message,
+      });
+    }
+  },
+
+  removeDocument: async (req, res) => {
+    try {
+      console.log(req.params.id);
+
+      await DocumentModel.findByIdAndDelete(req.params.id);
+
+      res.json({ msg: 'Документ удален!' });
     } catch (err) {
       return res.status(500).json({
         msg: err.message,

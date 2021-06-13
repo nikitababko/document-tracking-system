@@ -68,6 +68,11 @@ const createRoutes = (app) => {
   app.get('/api/get_all_document', DocumentController.getAllDocuments);
 
   app.post('/api/find_document', DocumentController.findDocument);
+
+  app.delete(
+    '/api/remove_document/:id',
+    DocumentController.removeDocument
+  );
 };
 
 module.exports = createRoutes;

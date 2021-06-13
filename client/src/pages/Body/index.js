@@ -6,6 +6,7 @@ import { Login, Register } from 'pages/Auth';
 import {
   ActivationEmail,
   DataBase,
+  EditDocument,
   ForgotPassword,
   NotFound,
   ResetPassword,
@@ -75,6 +76,12 @@ const Body = () => {
             exact
             path="/data_base"
             component={isLogged ? DataBase : NotFound}
+          />
+
+          <Route
+            exact
+            path="/edit_document/:id"
+            component={isAdmin ? EditDocument : NotFound}
           />
 
           <Route
