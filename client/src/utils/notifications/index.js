@@ -1,10 +1,27 @@
 import React from 'react';
+import { Alert, notification, Space } from 'antd';
+
 import './index.scss';
 
 export const showErrMsg = (msg) => {
-  return <div className="err-msg">{msg}</div>;
+  const openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: 'Ошибка!',
+      description: msg,
+    });
+  };
+
+  return <Space>{openNotificationWithIcon('error')}</Space>;
 };
 
 export const showSuccessMsg = (msg) => {
-  return <div className="success-msg">{msg}</div>;
+  const openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: 'Успешно!',
+      description: msg,
+      duration: 100000,
+    });
+  };
+
+  return <Space>{openNotificationWithIcon('success')}</Space>;
 };

@@ -1,15 +1,9 @@
-.err-msg {
-  background: rgb(214, 10, 10);
-  color: #fff9;
-  text-align: center;
-  padding: 10px 0;
-  letter-spacing: 1.3px;
+.ant-notification-notice-error {
+  background-color: #fff2f0 !important;
+  border: 1px solid #ff654d;
 }
 
-.success-msg {
-  background: rgb(9, 158, 54);
-  color: #fff9;
-  text-align: center;
-  padding: 10px 0;
-  letter-spacing: 1.3px;
+.ant-notification-notice-success {
+  background-color: #f6ffed !important;
+  border: 1px solid #80ff00;
 }
