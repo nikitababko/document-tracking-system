@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Tabs } from 'antd';
 
-import './index.scss';
 import { NotFound, TaskCreate } from 'components';
-import TaskNew from '../TaskNew';
+import { fetchAllDocuments } from 'redux/actions/documentAction';
+
+import './index.scss';
 
 const TaskPage = () => {
   /**
@@ -14,22 +15,27 @@ const TaskPage = () => {
    * */
   const [filesArray, setFilesArray] = useState([]);
 
+  const { token } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllDocuments(token));
+  }, []);
+
   // Tabs
   const { TabPane } = Tabs;
 
   return (
     <div className="tasks">
       <Tabs defaultActiveKey="1" centered type="line" tabPosition="left">
-        <TabPane tab="Новые" key="1">
-          <TaskNew />
+        <TabPane tab="Выполняются" key="1">
+          фывфыв
         </TabPane>
-        <TabPane tab="Выполняются" key="2">
+        <TabPane tab="Завершенные" key="2">
           asdasd
         </TabPane>
-        <TabPane tab="Завершенные" key="3">
-          asdasd
-        </TabPane>
-        <TabPane tab="Создать" key="4">
+        <TabPane tab="Создать" key="3">
           <TaskCreate
             filesArray={filesArray}
             setFilesArray={setFilesArray}

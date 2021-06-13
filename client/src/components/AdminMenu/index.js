@@ -10,11 +10,9 @@ import {
   dispatchGetAllUsers,
 } from 'redux/actions/userAction';
 
-import initials from '../../../utils/initials';
-
 import './index.scss';
 
-const Profile = () => {
+const AdminMenu = () => {
   const initialState = {
     name: '',
     password: '',
@@ -180,149 +178,68 @@ const Profile = () => {
         {loading && <h3>Загрузка.....</h3>}
       </div>
       <div className="profile-page">
-        <div className="col-left">
-          <h2>{isAdmin ? 'Админ' : 'Пользователь'}</h2>
+        <div className="col-right">
+          <h2>Пользователи</h2>
 
-          <div className="avatar">
-            <img src={avatar ? avatar : user.avatar} alt="" />
-            <span>
-              <i className="fas fa-camera"></i>
-              <p>Изменить</p>
-              <input
-                type="file"
-                name="file"
-                id="file_up"
-                onChange={changeAvatar}
-              />
-            </span>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="name">Имя</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              defaultValue={user.name}
-              placeholder="Ваше имя"
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              defaultValue={user.email}
-              placeholder="Ваш email"
-              disabled
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Новый пароль</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Ваш пароль"
-              value={password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="cf_password">Подтвердите свой пароль</label>
-            <input
-              type="password"
-              name="cf_password"
-              id="cf_password"
-              placeholder="Подвтердите пароль"
-              value={cf_password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="faculty">Факультет</label>
-            <input
-              name="faculty"
-              id="faculty"
-              placeholder="Факультет"
-              defaultValue={user.faculty}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="position">Позиция</label>
-            <input
-              name="position"
-              id="position"
-              placeholder="Позиция"
-              defaultValue={user.position}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button disabled={loading} onClick={handleUpdate}>
-            Обновить
-          </button>
-        </div>
-
-        {/* {isAdmin ? (
-          <div className="col-right">
-            <h2>Пользователи</h2>
-
-            <div style={{ overflowX: 'auto' }}>
-              <table className="customers">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Email</th>
-                    <th>Админ</th>
-                    <th>Изменение БД</th>
-                    <th>Чтение БД</th>
-                    <th>Админ</th>
-                    <th>Действие</th>
+          <div style={{ overflowX: 'auto' }}>
+            <table className="customers">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Имя</th>
+                  <th>Email</th>
+                  <th>Админ</th>
+                  <th>Действие с пользователем</th>
+                  <th>Изменение БД</th>
+                  <th>Чтение БД</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user._id}>
+                    <td>{user._id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      {user.role === 1 ? (
+                        <i className="fas fa-check" title="Admin"></i>
+                      ) : (
+                        <i className="fas fa-times" title="User"></i>
+                      )}
+                    </td>
+                    <td>
+                      <Link to={`/edit_user/${user._id}`}>
+                        <i className="fas fa-edit" title="Edit"></i>
+                      </Link>
+                      <i
+                        className="fas fa-trash-alt"
+                        title="Remove"
+                        onClick={() => handleDelete(user._id)}
+                      ></i>
+                    </td>
+                    <td>
+                      {user.editDB === 1 ? (
+                        <i className="fas fa-check" title="editDB"></i>
+                      ) : (
+                        <i className="fas fa-times" title="User"></i>
+                      )}
+                    </td>
+                    <td>
+                      {user.readDB === 1 ? (
+                        <i className="fas fa-check" title="readDB"></i>
+                      ) : (
+                        <i className="fas fa-times" title="User"></i>
+                      )}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {users.map((user) => (
-                    <tr key={user._id}>
-                      <td>{user._id}</td>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>
-                        {user.role === 1 ? (
-                          <i className="fas fa-check" title="Admin"></i>
-                        ) : (
-                          <i className="fas fa-times" title="User"></i>
-                        )}
-                      </td>
-                      <td>
-                        <Link to={`/edit_user/${user._id}`}>
-                          <i className="fas fa-edit" title="Edit"></i>
-                        </Link>
-                        <i
-                          className="fas fa-trash-alt"
-                          title="Remove"
-                          onClick={() => handleDelete(user._id)}
-                        ></i>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ) : null} */}
+        </div>
       </div>
     </>
   );
 };
 
-export default Profile;
+export default AdminMenu;

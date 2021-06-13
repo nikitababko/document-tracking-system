@@ -25,5 +25,31 @@
         }
       }
     }
+
+    #isEditDB {
+      width: 20px;
+      height: 20px;
+      transform: translateY(3px);
+      margin: 10px 0;
+      + {
+        label {
+          display: inline-block;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    #isReadDB {
+      width: 20px;
+      height: 20px;
+      transform: translateY(3px);
+      margin: 10px 0;
+      + {
+        label {
+          display: inline-block;
+          margin-left: 5px;
+        }
+      }
+    }
   }
 }

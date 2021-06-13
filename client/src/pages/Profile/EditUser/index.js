@@ -20,12 +20,28 @@ const EditUser = () => {
   const [success, setSuccess] = useState(false);
   const [num, setNum] = useState(0);
 
+  // Edit DB
+  const [checkEditDB, setCheckEditDB] = useState(false);
+  const [numEditDB, setNumEditDB] = useState(0);
+
+  // Read DB
+  const [checkReadDB, setCheckReadDB] = useState(false);
+  const [numReadDB, setNumReadDB] = useState(0);
+
   useEffect(() => {
     if (users.length !== 0) {
       users.forEach((user) => {
         if (user._id === id) {
           setEditUser(user);
           setCheckAdmin(user.role === 1 ? true : false);
+
+          // Check Edit DB
+          setEditUser(user);
+          setCheckEditDB(user.editDB === 1 ? true : false);
+
+          // Check Read DB
+          setEditUser(user);
+          setCheckReadDB(user.readDB === 1 ? true : false);
         }
       });
     } else {
@@ -61,25 +77,95 @@ const EditUser = () => {
     setNum(num + 1);
   };
 
+  // Edit DB
+  const handleUpdateEditDB = async () => {
+    try {
+      if (numEditDB % 2 !== 0) {
+        const res = await axios.patch(
+          `/user/edit_db/${editUser._id}`,
+          {
+            editDB: checkEditDB ? 1 : 0,
+          },
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        setSuccess(res.data.msg);
+        setNumEditDB(0);
+      }
+    } catch (err) {
+      err.response.data.msg && setErr(err.response.data.msg);
+    }
+  };
+
+  const handleCheckEditDB = () => {
+    setSuccess('');
+    setErr('');
+    setCheckEditDB(!checkEditDB);
+    setNumEditDB(numEditDB + 1);
+  };
+
+  // Read DB
+  const handleUpdateReadDB = async () => {
+    try {
+      if (numReadDB % 2 !== 0) {
+        const res = await axios.patch(
+          `/user/read_db/${editUser._id}`,
+          {
+            readDB: checkReadDB ? 1 : 0,
+          },
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        setSuccess(res.data.msg);
+        setNumReadDB(0);
+      }
+    } catch (err) {
+      err.response.data.msg && setErr(err.response.data.msg);
+    }
+  };
+
+  const handleCheckReadDB = () => {
+    setSuccess('');
+    setErr('');
+    setCheckReadDB(!checkReadDB);
+    setNumReadDB(numReadDB + 1);
+  };
+
+  console.log(checkEditDB, numEditDB);
+
   return (
     <div className="profile-page edit-user">
       <div className="row">
         <button onClick={() => history.goBack()} className="go-back">
-          <i className="fas fa-long-arrow-alt-left"></i> Go Back
+          <i className="fas fa-long-arrow-alt-left"></i> Назад
         </button>
       </div>
 
       <div className="col-left">
-        <h2>Edit User</h2>
+        <h2>Изменить пользователя</h2>
 
         <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" defaultValue={editUser.name} disabled />
+          <label htmlFor="name">Имя</label>
+          <input
+            type="text"
+            name="name"
+            defaultValue={editUser.name}
+            disabled
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" name="email" defaultValue={editUser.email} disabled />
+          <input
+            type="email"
+            name="email"
+            defaultValue={editUser.email}
+            disabled
+          />
         </div>
 
         <div className="form-group">
@@ -89,10 +175,34 @@ const EditUser = () => {
             checked={checkAdmin}
             onChange={handleCheck}
           />
-          <label htmlFor="isAdmin">isAdmin</label>
+          <label htmlFor="isAdmin">Админ</label>
         </div>
 
-        <button onClick={handleUpdate}>Update</button>
+        <div className="form-group">
+          <input
+            type="checkbox"
+            id="isEditDB"
+            checked={checkEditDB}
+            onChange={handleCheckEditDB}
+          />
+          <label htmlFor="isEditDB">Изменения БД</label>
+        </div>
+
+        <div className="form-group">
+          <input
+            type="checkbox"
+            id="isReadDB"
+            checked={checkReadDB}
+            onChange={handleCheckReadDB}
+          />
+          <label htmlFor="isReadDB">Чтение ДБ</label>
+        </div>
+
+        <button onClick={handleUpdate}>Изменить админа</button>
+        <button onClick={handleUpdateEditDB}>
+          Изменить редактивания БД
+        </button>
+        <button onClick={handleUpdateReadDB}>Изменить чтение БД</button>
 
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}

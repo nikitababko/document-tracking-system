@@ -7,4 +7,5 @@ export { default as ResetPassword } from './ResetPassword';
 export { default as UserManual } from './UserManual';
 export { default as TaskPage } from './Tasks/TaskPage';
 export { default as TaskCreate } from './Tasks/TaskCreate';
+export { default as Tracking } from './Tasks/Tracking';
 export { default as DataBase } from './DataBase';

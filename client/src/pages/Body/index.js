@@ -11,10 +11,12 @@ import {
   ResetPassword,
   TaskCreate,
   TaskPage,
+  Tracking,
   UserManual,
 } from 'components';
 import { EditProfile, EditUser } from 'pages/Profile';
 import Home from 'pages/Home';
+import AdminMenu from 'components/AdminMenu';
 
 import './index.scss';
 
@@ -31,6 +33,10 @@ const Body = () => {
         */}
 
           <Route exact path="/" component={Home} />
+
+          <Route exact path="/tracking" component={Tracking} />
+
+          <Route exact path="/admin_menu" component={AdminMenu} />
 
           <Route exact path="/user_manual" component={UserManual} />
 

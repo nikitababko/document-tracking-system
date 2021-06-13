@@ -80,6 +80,19 @@ const Header = () => {
             </Link>
           </li>
           <li>
+            <Link to="/tracking">
+              <i className="fas fa-home"></i> Отслеживание
+            </Link>
+          </li>
+          {user.role === 1 && (
+            <li>
+              <Link to="/admin_menu">
+                <i className="fas fa-home"></i> Админ меню
+              </Link>
+            </li>
+          )}
+
+          <li>
             <Link to="/user_manual">
               <i class="far fa-file-alt"></i> Руководство пользователя
             </Link>

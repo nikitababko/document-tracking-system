@@ -7,6 +7,7 @@ import FacebookLogin from 'react-facebook-login';
 import { showErrMsg, showSuccessMsg } from 'utils/notifications';
 import { dispatchLogin } from 'redux/actions/authAction';
 import { useDispatch } from 'react-redux';
+import image from 'images/register/frame.svg';
 
 import './index.scss';
 
@@ -96,64 +97,70 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <h2>Авторизация</h2>
+      <div className="left-content">
+        <h2>Авторизация</h2>
 
-      {err && showErrMsg(err)}
-      {success && showSuccessMsg(success)}
+        {err && showErrMsg(err)}
+        {success && showSuccessMsg(success)}
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            placeholder="Введите email"
-            id="email"
-            value={email}
-            name="email"
-            onChange={handleChangeInput}
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              placeholder="Введите email"
+              id="email"
+              value={email}
+              name="email"
+              onChange={handleChangeInput}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Пароль</label>
+            <input
+              type="password"
+              placeholder="Введите пароль"
+              id="password"
+              value={password}
+              name="password"
+              onChange={handleChangeInput}
+            />
+          </div>
+
+          <div className="row">
+            <button type="submit">Войти</button>
+            <Link to="/forgot_password">Забыли пароль?</Link>
+          </div>
+        </form>
+
+        {/* <div className="hr">Or Login With</div>
+
+        <div className="social">
+          <GoogleLogin
+            clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
+            buttonText="Login with google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
           />
-        </div>
 
-        <div>
-          <label htmlFor="password">Пароль</label>
-          <input
-            type="password"
-            placeholder="Введите пароль"
-            id="password"
-            value={password}
-            name="password"
-            onChange={handleChangeInput}
+          <FacebookLogin
+            appId={process.env.REACT_APP_FACEBOOK_CLIENT}
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
           />
-        </div>
+        </div> */}
 
-        <div className="row">
-          <button type="submit">Войти</button>
-          <Link to="/forgot_password">Забыли пароль?</Link>
-        </div>
-      </form>
+        <p>
+          Новый пользователь? <Link to="/register">Регистрация</Link>
+        </p>
+      </div>
 
-      {/* <div className="hr">Or Login With</div>
-
-      <div className="social">
-        <GoogleLogin
-          clientId={`${process.env.REACT_APP_GOOGLE_CLIENT}`}
-          buttonText="Login with google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-
-        <FacebookLogin
-          appId={process.env.REACT_APP_FACEBOOK_CLIENT}
-          autoLoad={false}
-          fields="name,email,picture"
-          callback={responseFacebook}
-        />
-      </div> */}
-
-      <p>
-        Новый пользователь? <Link to="/register">Регистрация</Link>
-      </p>
+      <div className="right-content">
+        <img src={image} alt="Image" />
+      </div>
     </div>
   );
 };

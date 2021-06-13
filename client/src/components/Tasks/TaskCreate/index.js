@@ -106,6 +106,7 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
           </label>
 
           <div className="checkboxes">
+            Макет:{' '}
             <Radio.Group onChange={onChange} value={check}>
               <Radio value={1}>Да</Radio>
               <Radio value={2}>Нет</Radio>
