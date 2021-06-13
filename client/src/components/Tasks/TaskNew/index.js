@@ -16,7 +16,7 @@ import { findDocument } from 'redux/actions/documentAction';
 
 import './index.scss';
 
-const ModalAuthor = ({ author }) => {
+const ModalAuthor = ({ user }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -36,7 +36,7 @@ const ModalAuthor = ({ author }) => {
   return (
     <>
       <a type="primary" onClick={showModal}>
-        {author.name}
+        {user.name}
       </a>
       <Modal
         title="Карточка пользователя"
@@ -46,29 +46,23 @@ const ModalAuthor = ({ author }) => {
       >
         <Card>
           <Meta
-            avatar={<Avatar src={author.avatar} />}
-            title={author.name}
+            avatar={<Avatar src={user.avatar} />}
+            title={user.name}
             description={
               <>
                 <p>
-                  Email: <span>{author.email}</span>
+                  Email: <span>{user.email}</span>
                 </p>
-                {/* <p>
-                  Телефон: <span>{author.phone}</span>
-                </p> */}
                 <p>
-                  Факультет: <span>{author.faculty}</span>
+                  Телефон: <span>{user.phone}</span>
                 </p>
-                {/* <p>
-                  Позиция: <span>{author.position}</span>
-                </p> */}
+                <p>
+                  Факультет: <span>{user.faculty}</span>
+                </p>
               </>
             }
           />
-          <p className="position">
-            {/* {author.position} */}
-            Представитель учебно-методического совета факультета
-          </p>
+          <p className="position">{user.position}</p>
         </Card>
       </Modal>
     </>
@@ -127,10 +121,10 @@ const TaskNew = () => {
     },
     {
       title: 'Автор',
-      dataIndex: 'author',
-      key: 'author',
+      dataIndex: 'user',
+      key: 'user',
       render: (text) => (
-        <ModalAuthor author={documents.foundDocument.user} />
+        <ModalAuthor user={documents.foundDocument.user} />
       ),
     },
     {
@@ -147,7 +141,7 @@ const TaskNew = () => {
       createdAt: moment(documents.foundDocument.createdAt).format(
         'DD.MM.YYYY, hh:mm:ss'
       ),
-      author: foundDocumentSize && documents.foundDocument.user.name,
+      user: foundDocumentSize && documents.foundDocument.user.name,
       status: 'Завершен',
     },
   ];
