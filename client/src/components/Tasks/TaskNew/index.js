@@ -87,7 +87,7 @@ const TaskNew = () => {
       createdAt: moment(documents.foundDocument.createdAt).format(
         'DD.MM.YYYY, hh:mm:ss'
       ),
-      author: documents.foundDocument.user.name,
+      author: foundDocumentSize && documents.foundDocument.user.name,
       status: 'Завершен',
     },
   ];
@@ -115,7 +115,7 @@ const TaskNew = () => {
                   <div className="author-name">
                     <span className="author-name__title">Автор</span>
                     <div className="author-name__fio">
-                      {auth.user.name}
+                      {documents.foundDocument.user.name}
                     </div>
                   </div>
                   <div className="document-date-wrapper">

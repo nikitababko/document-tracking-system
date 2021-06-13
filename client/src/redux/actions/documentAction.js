@@ -28,8 +28,6 @@ export const findDocument =
         }
       );
 
-      console.log(res.data.existingDocument);
-
       dispatch({
         type: ACTIONS.FIND_DOCUMENT,
         payload: res.data.existingDocument,
