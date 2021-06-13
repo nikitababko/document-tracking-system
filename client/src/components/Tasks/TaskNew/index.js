@@ -1,22 +1,79 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import {
   Collapse,
   Steps,
-  Divider,
   Input,
-  Upload,
-  Modal,
-  message,
   Table,
-  Tag,
-  Space,
+  Modal,
   Button,
+  Card,
+  Avatar,
 } from 'antd';
 import moment from 'moment';
 
 import { findDocument } from 'redux/actions/documentAction';
+
+import './index.scss';
+
+const ModalAuthor = ({ author }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const { Meta } = Card;
+
+  return (
+    <>
+      <a type="primary" onClick={showModal}>
+        {author.name}
+      </a>
+      <Modal
+        title="Карточка пользователя"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Card>
+          <Meta
+            avatar={<Avatar src={author.avatar} />}
+            title={author.name}
+            description={
+              <>
+                <p>
+                  Email: <span>{author.email}</span>
+                </p>
+                {/* <p>
+                  Телефон: <span>{author.phone}</span>
+                </p> */}
+                <p>
+                  Факультет: <span>{author.faculty}</span>
+                </p>
+                {/* <p>
+                  Позиция: <span>{author.position}</span>
+                </p> */}
+              </>
+            }
+          />
+          <p className="position">
+            {/* {author.position} */}
+            Представитель учебно-методического совета факультета
+          </p>
+        </Card>
+      </Modal>
+    </>
+  );
+};
 
 const TaskNew = () => {
   const [stepState, setStepState] = useState(0);
@@ -62,7 +119,6 @@ const TaskNew = () => {
       title: 'Номер',
       dataIndex: '_id',
       key: '_id',
-      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Дата',
@@ -73,6 +129,9 @@ const TaskNew = () => {
       title: 'Автор',
       dataIndex: 'author',
       key: 'author',
+      render: (text) => (
+        <ModalAuthor author={documents.foundDocument.user} />
+      ),
     },
     {
       title: 'Статус',
@@ -98,7 +157,6 @@ const TaskNew = () => {
       <div className="block-document">
         <div className="follow">
           <h2>Отслеживание</h2>
-          {/* {foundDocumentSize && showSuccessMsg('asasd')} */}
 
           <Search
             placeholder="Поиск документа"
