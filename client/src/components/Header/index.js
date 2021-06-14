@@ -34,7 +34,7 @@ const Header = () => {
           <li>
             <Link to="/tasks">Задачи</Link>
           </li>
-          {user.readDB === 1 ? (
+          {user.readDB === 1 || user.role === 1 ? (
             <li>
               <Link to="/data_base">База данных</Link>
             </li>
