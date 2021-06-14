@@ -53,3 +53,29 @@
     }
   }
 }
+
+.actions-wrapper {
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+
+    border: 1px solid #e0e7ff;
+    box-shadow: 3px 4px 9px 3px #e0e7ff;
+
+    .form-group {
+      input:checked {
+        color: #d05818 !important;
+      }
+    }
+
+    button {
+      margin: 0;
+
+      background-color: #d05818;
+      border-color: #d05818;
+    }
+  }
+}

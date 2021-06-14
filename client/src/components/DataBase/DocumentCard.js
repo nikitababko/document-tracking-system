@@ -81,7 +81,7 @@ const DocumentCard = ({ filterFaculty }) => {
               download
             >
               <Button type="primary" icon={<DownloadOutlined />}>
-                Загрузить
+                Скачать
               </Button>
             </Link>
 

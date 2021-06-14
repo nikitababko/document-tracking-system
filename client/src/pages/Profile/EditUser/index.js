@@ -45,7 +45,7 @@ const EditUser = () => {
         }
       });
     } else {
-      history.push('/profile');
+      history.push('/admin_menu');
     }
   }, [users, id, history]);
 
@@ -168,41 +168,49 @@ const EditUser = () => {
           />
         </div>
 
-        <div className="form-group">
-          <input
-            type="checkbox"
-            id="isAdmin"
-            checked={checkAdmin}
-            onChange={handleCheck}
-          />
-          <label htmlFor="isAdmin">Админ</label>
-        </div>
+        <div className="actions-wrapper">
+          <div className="actions">
+            <div className="form-group">
+              <input
+                type="checkbox"
+                id="isAdmin"
+                checked={checkAdmin}
+                onChange={handleCheck}
+              />
+              <label htmlFor="isAdmin">Админ</label>
+            </div>
 
-        <div className="form-group">
-          <input
-            type="checkbox"
-            id="isEditDB"
-            checked={checkEditDB}
-            onChange={handleCheckEditDB}
-          />
-          <label htmlFor="isEditDB">Изменения БД</label>
-        </div>
+            <button onClick={handleUpdate}>Изменить</button>
+          </div>
 
-        <div className="form-group">
-          <input
-            type="checkbox"
-            id="isReadDB"
-            checked={checkReadDB}
-            onChange={handleCheckReadDB}
-          />
-          <label htmlFor="isReadDB">Чтение ДБ</label>
-        </div>
+          <div className="actions">
+            <div className="form-group">
+              <input
+                type="checkbox"
+                id="isEditDB"
+                checked={checkEditDB}
+                onChange={handleCheckEditDB}
+              />
+              <label htmlFor="isEditDB">Изменения БД</label>
+            </div>
 
-        <button onClick={handleUpdate}>Изменить админа</button>
-        <button onClick={handleUpdateEditDB}>
-          Изменить редактивания БД
-        </button>
-        <button onClick={handleUpdateReadDB}>Изменить чтение БД</button>
+            <button onClick={handleUpdateEditDB}>Изменить</button>
+          </div>
+
+          <div className="actions">
+            <div className="form-group">
+              <input
+                type="checkbox"
+                id="isReadDB"
+                checked={checkReadDB}
+                onChange={handleCheckReadDB}
+              />
+              <label htmlFor="isReadDB">Чтение ДБ</label>
+            </div>
+
+            <button onClick={handleUpdateReadDB}>Изменить</button>
+          </div>
+        </div>
 
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
