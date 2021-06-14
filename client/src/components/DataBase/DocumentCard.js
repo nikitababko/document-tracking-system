@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Card, Button } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
@@ -42,9 +43,15 @@ const DocumentCard = ({ filterFaculty }) => {
             </p>
           </div>
 
-          <Button type="primary" icon={<DownloadOutlined />}>
-            Загрузить
-          </Button>
+          <Link
+            to={`/documents/${item.name}.${item.type}`}
+            target="_blank"
+            download
+          >
+            <Button type="primary" icon={<DownloadOutlined />}>
+              Загрузить
+            </Button>
+          </Link>
         </Card>
       ))}
     </div>

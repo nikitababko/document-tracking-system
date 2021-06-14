@@ -14,6 +14,7 @@ import {
 } from 'antd';
 
 import image from 'images/user-manual/image.svg';
+import Author from './Author';
 
 import './index.scss';
 
@@ -32,7 +33,7 @@ const UserManual = () => {
 
       <Collapse>
         <Panel header="Автор" key="1">
-          <p>Руководство для автора</p>
+          <Author />
         </Panel>
         <Panel header="Сотрудник" key="2">
           <p>Руководство для сотрудника</p>

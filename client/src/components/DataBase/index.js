@@ -74,21 +74,25 @@ const DataBase = () => {
             filterFaculty={EMFFaculties(documents.allDocuments)}
           />
         </TabPane>
+
         <TabPane tab="ГТФ" key="2">
           <DocumentCard
             filterFaculty={GTFFaculties(documents.allDocuments)}
           />
         </TabPane>
+
         <TabPane tab="ИМА" key="3">
           <DocumentCard
             filterFaculty={IMAFaculties(documents.allDocuments)}
           />
         </TabPane>
+
         <TabPane tab="СМФ" key="4">
           <DocumentCard
             filterFaculty={SMFFaculties(documents.allDocuments)}
           />
         </TabPane>
+
         <TabPane tab="ФУВТ" key="5">
           <DocumentCard
             filterFaculty={FUFTFaculties(documents.allDocuments)}

@@ -34,9 +34,12 @@ const Header = () => {
           <li>
             <Link to="/tasks">Задачи</Link>
           </li>
-          <li>
-            <Link to="/data_base">База данных</Link>
-          </li>
+          {user.readDB === 1 ? (
+            <li>
+              <Link to="/data_base">База данных</Link>
+            </li>
+          ) : null}
+
           <li>
             <Link to="/" onClick={handleLogout}>
               Выйти
