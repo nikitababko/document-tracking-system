@@ -14,7 +14,7 @@ const DataBase = () => {
 
   useEffect(() => {
     dispatch(fetchAllDocuments(token));
-  }, []);
+  }, [documents.allDocuments]);
 
   const EMFFaculties = (arr) => {
     const newArr = arr.map((element) => {

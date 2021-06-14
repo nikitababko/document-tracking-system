@@ -1,19 +1,50 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { Card, Button } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import { DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import documentImage from 'images/data-base/document-image.jpg';
 
 const DocumentCard = ({ filterFaculty }) => {
+  const { token } = useSelector((state) => state);
+  const history = useHistory();
+  const [documentId, setDocumentId] = useState('');
+
+  const inputRef = useRef();
+  useEffect(() => {
+    setTimeout(() => {
+      setDocumentId(inputRef.current.value);
+    }, 100);
+  }, []);
+
+  // Remove document
+  const handleRemove = async () => {
+    try {
+      let answer = window.confirm(
+        'Вы уверены, что хотите удалить этот документ?'
+      );
+
+      if (answer) {
+        await axios.delete(`/api/remove_document/${documentId}`, {
+          headers: { Authorization: token },
+        });
+        history.push('/data_base');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="document-card">
       {filterFaculty.map((item) => (
         <Card
           key={item._id}
           hoverable
-          style={{ width: 240 }}
           cover={<img alt="Document image" src={documentImage} />}
         >
           <div className="description">
@@ -43,15 +74,32 @@ const DocumentCard = ({ filterFaculty }) => {
             </p>
           </div>
 
-          <Link
-            to={`/documents/${item.name}.${item.type}`}
-            target="_blank"
-            download
-          >
-            <Button type="primary" icon={<DownloadOutlined />}>
-              Загрузить
+          <div className="buttons">
+            <Link
+              to={`/documents/${item.name}.${item.type}`}
+              target="_blank"
+              download
+            >
+              <Button type="primary" icon={<DownloadOutlined />}>
+                Загрузить
+              </Button>
+            </Link>
+
+            <Button
+              className="button-delete"
+              type="primary"
+              icon={<DeleteOutlined />}
+              onClick={handleRemove}
+            >
+              <input
+                style={{ position: 'absolute', visibility: 'hidden' }}
+                type="text"
+                value={item._id}
+                ref={inputRef}
+              />
+              Удалить
             </Button>
-          </Link>
+          </div>
         </Card>
       ))}
     </div>
