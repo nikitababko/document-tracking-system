@@ -48,6 +48,8 @@ const DocumentCard = ({ filterFaculty }) => {
           cover={<img alt="Document image" src={documentImage} />}
         >
           <div className="description">
+            <h3>Статус:</h3> {item.step === 4 ? 'Завершен' : 'Выполняется'}
+            <br />
             <h3>Название:</h3> {item.name}
             <br />
             <br />
