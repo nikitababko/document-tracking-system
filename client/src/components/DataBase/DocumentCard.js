@@ -10,7 +10,7 @@ import { DownloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import documentImage from 'images/data-base/document-image.jpg';
 
 const DocumentCard = ({ filterFaculty }) => {
-  const { token } = useSelector((state) => state);
+  const { token, auth } = useSelector((state) => state);
   const history = useHistory();
   const [documentId, setDocumentId] = useState('');
 
@@ -18,7 +18,7 @@ const DocumentCard = ({ filterFaculty }) => {
   useEffect(() => {
     setTimeout(() => {
       setDocumentId(inputRef.current.value);
-    }, 100);
+    }, 500);
   }, []);
 
   // Remove document
@@ -85,20 +85,22 @@ const DocumentCard = ({ filterFaculty }) => {
               </Button>
             </Link>
 
-            <Button
-              className="button-delete"
-              type="primary"
-              icon={<DeleteOutlined />}
-              onClick={handleRemove}
-            >
-              <input
-                style={{ position: 'absolute', visibility: 'hidden' }}
-                type="text"
-                value={item._id}
-                ref={inputRef}
-              />
-              Удалить
-            </Button>
+            {auth.user.editDB === 1 || auth.user.role === 1 ? (
+              <Button
+                className="button-delete"
+                type="primary"
+                icon={<DeleteOutlined />}
+                onClick={handleRemove}
+              >
+                <input
+                  style={{ position: 'absolute', visibility: 'hidden' }}
+                  type="text"
+                  value={item._id}
+                  ref={inputRef}
+                />
+                Удалить
+              </Button>
+            ) : null}
           </div>
         </Card>
       ))}
