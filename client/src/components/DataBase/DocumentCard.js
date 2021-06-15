@@ -18,7 +18,7 @@ const DocumentCard = ({ filterFaculty }) => {
   useEffect(() => {
     setTimeout(() => {
       setDocumentId(inputRef.current.value);
-    }, 500);
+    }, 0);
   }, []);
 
   // Remove document
