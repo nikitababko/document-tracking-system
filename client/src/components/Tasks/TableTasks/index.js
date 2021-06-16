@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 import './index.scss';
 
 const TableTasks = ({ filteredDocuments }) => {
-  const { documents } = useSelector((state) => state);
+  const { documents, auth } = useSelector((state) => state);
+
+  const ownerDocumentsFunc = (documents) => {
+    return documents.filter(
+      (element) => element.user._id === auth.user._id
+    );
+  };
+  const ownerDocuments = filteredDocuments(documents);
 
   return (
     <div className="table-tasks">
@@ -17,18 +24,31 @@ const TableTasks = ({ filteredDocuments }) => {
           <td>Факультет</td>
         </tr>
 
-        {filteredDocuments(documents).map((element) => (
-          <tr key={element._id}>
-            <td>
-              <Link to={`/edit_document/${element._id}`}>
-                {element._id}
-              </Link>
-            </td>
-            <td>{element.name}</td>
-            <td>{element.user.name}</td>
-            <td>{element.user.faculty}</td>
-          </tr>
-        ))}
+        {auth.user.position === 'Автор' && auth.user.role !== 1
+          ? ownerDocumentsFunc(ownerDocuments).map((element) => (
+              <tr key={element._id}>
+                <td>
+                  <Link to={`/edit_document/${element._id}`}>
+                    {element._id}
+                  </Link>
+                </td>
+                <td>{element.name}</td>
+                <td>{element.user.name}</td>
+                <td>{element.user.faculty}</td>
+              </tr>
+            ))
+          : filteredDocuments(documents).map((element) => (
+              <tr key={element._id}>
+                <td>
+                  <Link to={`/edit_document/${element._id}`}>
+                    {element._id}
+                  </Link>
+                </td>
+                <td>{element.name}</td>
+                <td>{element.user.name}</td>
+                <td>{element.user.faculty}</td>
+              </tr>
+            ))}
       </table>
     </div>
   );

@@ -11,7 +11,7 @@ import TableTasks from '../TableTasks';
 const TaskPage = () => {
   const [filesArray, setFilesArray] = useState([]);
 
-  const { token, documents } = useSelector((state) => state);
+  const { token, documents, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
