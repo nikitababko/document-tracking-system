@@ -90,7 +90,10 @@ const DocumentController = {
 
       await DocumentModel.findOneAndUpdate(
         { _id: req.params.id },
-        { name: req.body.name }
+        {
+          name: req.body.name,
+          secondComment: req.body.secondComment,
+        }
       );
 
       res.json({ msg: 'Документ обновлен!' });

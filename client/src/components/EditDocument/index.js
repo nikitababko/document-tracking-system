@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import { fetchAllDocuments } from 'redux/actions/documentAction';
 import documentImage from 'images/data-base/document-image.jpg';
+import { showSuccessMsg } from 'utils/notifications';
 
 import './index.scss';
 
@@ -22,6 +23,7 @@ const EditDocument = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
+  const [secondComment, setSecondComment] = useState('');
 
   useEffect(() => {
     dispatch(fetchAllDocuments(token));
@@ -50,11 +52,13 @@ const EditDocument = () => {
     try {
       await axios.patch(
         `/api/edit_document/${id}`,
-        { name },
+        { name, secondComment },
         {
           headers: { Authorization: token },
         }
       );
+
+      showSuccessMsg('Файл отправлен на доработку!');
     } catch (err) {
       console.log(err);
     }
@@ -196,14 +200,14 @@ const EditDocument = () => {
                 Удалить
               </Button>
 
-              <Button
+              {/* <Button
                 className="button-edit"
                 type="primary"
                 icon={<EditOutlined />}
                 onClick={handleEdit}
               >
                 Изменить
-              </Button>
+              </Button> */}
             </div>
           </div>
 
@@ -216,6 +220,8 @@ const EditDocument = () => {
               cols="50"
               rows="2"
               placeholder="Введите свой комментарий"
+              value={secondComment}
+              onChange={(e) => setSecondComment(e.target.value)}
             ></textarea>
 
             <br />
@@ -229,6 +235,7 @@ const EditDocument = () => {
               <Button
                 type="primary button-edit"
                 icon={<DownloadOutlined />}
+                onClick={handleEdit}
               >
                 Отправить автору на доработку
               </Button>

@@ -21,7 +21,10 @@ const DocumentSchema = new Schema(
       type: String,
     },
     comment: {
-      type: Array,
+      type: String,
+    },
+    secondComment: {
+      type: String,
     },
     step: {
       type: Number,
