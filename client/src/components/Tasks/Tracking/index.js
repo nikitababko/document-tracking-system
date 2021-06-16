@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Collapse,
@@ -142,7 +143,8 @@ const TaskNew = () => {
         'DD.MM.YYYY, hh:mm:ss'
       ),
       user: foundDocumentSize && documents.foundDocument.user.name,
-      status: 'Завершен',
+      status:
+        documents.foundDocument.step === 4 ? 'Завершен' : 'Выполняется',
     },
   ];
 
@@ -184,7 +186,7 @@ const TaskNew = () => {
                       </div>
                     </div>
                     <div className="document-date">
-                      12.05.2021 <div>18:38</div>
+                      N.N.N <div>N:N</div>
                     </div>
                     <div className="document-date">
                       N.N.N <div>N:N</div>
@@ -201,17 +203,15 @@ const TaskNew = () => {
                   </div>
                   <Steps
                     // progressDot
-                    current={stepState}
+                    current={1}
                     direction="vertical"
                   >
                     <Step
                       className="step-invisible"
                       title={
-                        stepState === 0
-                          ? 'Ожидание'
-                          : stepState > 0
+                        documents.foundDocument.step === 0
                           ? 'Завершено'
-                          : 'В процессе'
+                          : 'Ожидание'
                       }
                       description="Автор отправил документы 
         в учебно-методический совет факультета."

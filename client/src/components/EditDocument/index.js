@@ -171,8 +171,7 @@ const EditDocument = () => {
 
             <div className="buttons">
               <Link
-                // to={`/documents/${filteredDocument[0].name}.${filteredDocument[0].type}`}
-                to={`/documents/${filteredDocument[0].name}`}
+                to={`/documents/${filteredDocument[0].name}.${filteredDocument[0].type}`}
                 target="_blank"
                 download
               >
