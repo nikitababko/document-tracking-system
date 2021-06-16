@@ -7,14 +7,23 @@ import './index.scss';
 const TableTasks = ({ filteredDocuments }) => {
   const { documents, auth } = useSelector((state) => state);
 
-  const ownerDocumentsFunc = (documents) => {
+  const authorDocumentsFunc = (documents) => {
     return documents.filter(
       (element) => element.user._id === auth.user._id
     );
   };
-  const ownerDocuments = filteredDocuments(documents);
+  const authorDocuments = filteredDocuments(documents);
 
-  // console.log(ownerDocumentsFunc(ownerDocuments));
+  const noAuthorDocumentsFunc = (documents) => {
+    return documents.filter(
+      (element) => element.faculty === auth.user.faculty
+    );
+  };
+  const noAuthorDocuments = filteredDocuments(documents);
+
+  // .filter((element) => element.faculty === auth.user.faculty);
+
+  // console.log(authorDocumentsFunc(authorDocuments));
 
   return (
     <div className="table-tasks">
@@ -27,7 +36,7 @@ const TableTasks = ({ filteredDocuments }) => {
         </tr>
 
         {auth.user.position === 'Автор' && auth.user.role !== 1
-          ? ownerDocumentsFunc(ownerDocuments).map((element) => (
+          ? authorDocumentsFunc(authorDocuments).map((element) => (
               <tr key={element._id}>
                 <td>
                   <Link to={`/edit_document/${element._id}`}>
@@ -39,7 +48,8 @@ const TableTasks = ({ filteredDocuments }) => {
                 <td>{element.user.faculty}</td>
               </tr>
             ))
-          : filteredDocuments(documents).map((element) => (
+          : auth.user.position !== 'Автор' && auth.user.role !== 1
+          ? noAuthorDocumentsFunc(noAuthorDocuments).map((element) => (
               <tr key={element._id}>
                 <td>
                   <Link to={`/edit_document/${element._id}`}>
@@ -50,7 +60,21 @@ const TableTasks = ({ filteredDocuments }) => {
                 <td>{element.user.name}</td>
                 <td>{element.faculty}</td>
               </tr>
-            ))}
+            ))
+          : auth.user.role === 1
+          ? filteredDocuments(documents).map((element) => (
+              <tr key={element._id}>
+                <td>
+                  <Link to={`/edit_document/${element._id}`}>
+                    {element._id}
+                  </Link>
+                </td>
+                <td>{element.name}</td>
+                <td>{element.user.name}</td>
+                <td>{element.faculty}</td>
+              </tr>
+            ))
+          : null}
       </table>
     </div>
   );
