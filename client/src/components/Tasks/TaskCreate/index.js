@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment';
@@ -11,7 +11,6 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [comment, setComment] = useState('');
   const [check, setCheck] = useState(0);
-  // const [filesArray, setFilesArray] = useState([]);
 
   const { auth } = useSelector((state) => state);
 
@@ -19,25 +18,16 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
     setFilesArray([...filesArray, selectedFile]);
   };
 
+  // useEffect(() => {
+  //   addToFilesArray();
+  //   return () => {
+  //     addToFilesArray([]);
+  //   };
+  // }, [selectedFile]);
+
   const onFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-
-  // console.log(filesArray);
-  // console.log(selectedFile);
-
-  // const testArr = (filesArray) => {
-  //   return filesArray.map((element) => (
-  //     <tr>
-  //       <td>{element.name}</td>
-  //       <td>
-  //         {moment(element.lastModifiedDate).format('DD.MM.YYYY hh:mm:ss')}
-  //       </td>
-  //       <td>{element.size} Кбайт</td>
-  //       <td>{element.type}</td>
-  //     </tr>
-  //   ));
-  // };
 
   const onFileUpload = async () => {
     try {
@@ -67,10 +57,6 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
       console.log(error);
     }
   };
-
-  // const transformType = (selectedFile) => {
-  //   return selectedFile.type.split('/')[1].toUpperCase();
-  // };
 
   const transformType = (selectedFile) => {
     if (selectedFile.name.split('.')[1] === 'pdf') {

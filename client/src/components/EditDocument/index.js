@@ -30,10 +30,16 @@ const EditDocument = () => {
   // Remove document
   const handleRemove = async () => {
     try {
-      await axios.delete(`/api/remove_document/${id}`, {
-        headers: { Authorization: token },
-      });
-      history.push('/tasks');
+      let answer = window.confirm(
+        'Вы действительно хотите удалить данный файл?'
+      );
+
+      if (answer) {
+        await axios.delete(`/api/remove_document/${id}`, {
+          headers: { Authorization: token },
+        });
+        history.push('/tasks');
+      }
     } catch (err) {
       console.log(err);
     }
@@ -171,7 +177,8 @@ const EditDocument = () => {
 
             <div className="buttons">
               <Link
-                to={`/documents/${filteredDocument[0].name}.${filteredDocument[0].type}`}
+                // to={`/documents/${filteredDocument[0].name}.${filteredDocument[0].type}`}
+                to={`/documents/${filteredDocument[0].name}`}
                 target="_blank"
                 download
               >

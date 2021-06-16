@@ -78,7 +78,8 @@ const DocumentCard = ({ filterFaculty }) => {
 
           <div className="buttons">
             <Link
-              to={`/documents/${item.name}.${item.type}`}
+              to={`/documents/${item.name}`}
+              // to={`/documents/${item.name}.${item.type}`}
               target="_blank"
               download
             >
