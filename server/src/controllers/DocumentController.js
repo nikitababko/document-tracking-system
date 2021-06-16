@@ -90,6 +90,7 @@ const DocumentController = {
         { _id: req.params.id },
         {
           secondComment: req.body.secondComment,
+          secondCommentSendler: req.body.secondCommentSendler,
         }
       );
 

@@ -7,6 +7,7 @@ import { fetchAllDocuments } from 'redux/actions/documentAction';
 
 import './index.scss';
 import TableTasks from '../TableTasks';
+import Comments from '../Comments';
 
 const TaskPage = () => {
   const [filesArray, setFilesArray] = useState([]);
@@ -28,7 +29,11 @@ const TaskPage = () => {
     // .filter((element) => element.faculty === auth.user.faculty);
   };
 
-  // console.log(inTheProcessDocuments(documents));
+  const documentsWithComments = (documents) => {
+    return documents.allDocuments.filter(
+      (element) => element.secondComment.length
+    );
+  };
 
   // Tabs
   const { TabPane } = Tabs;
@@ -36,15 +41,21 @@ const TaskPage = () => {
   return (
     <div className="tasks">
       <Tabs defaultActiveKey="1" centered type="line" tabPosition="left">
-        <TabPane tab="Выполняются" key="1">
+        {auth.user.position === 'Автор' && (
+          <TabPane tab="Комментарии" key="1">
+            <Comments filteredDocuments={documentsWithComments} />
+          </TabPane>
+        )}
+
+        <TabPane tab="Выполняются" key="2">
           <TableTasks filteredDocuments={inTheProcessDocuments} />
         </TabPane>
 
-        <TabPane tab="Завершенные" key="2">
+        <TabPane tab="Завершенные" key="3">
           <TableTasks filteredDocuments={finishedDocuments} />
         </TabPane>
 
-        <TabPane tab="Создать" key="3">
+        <TabPane tab="Создать" key="4">
           <TaskCreate
             filesArray={filesArray}
             setFilesArray={setFilesArray}

@@ -26,6 +26,9 @@ const DocumentSchema = new Schema(
     secondComment: {
       type: String,
     },
+    secondCommentSendler: {
+      type: String,
+    },
     step: {
       type: Number,
       default: 0,
