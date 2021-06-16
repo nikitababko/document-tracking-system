@@ -19,14 +19,16 @@ const TaskPage = () => {
   }, []);
 
   const finishedDocuments = (documents) => {
-    return documents.allDocuments.filter((element) => element.step === 4);
+    return documents.allDocuments
+      .filter((element) => element.step === 4)
+      .filter((element) => element.faculty === auth.user.faculty);
   };
 
   const inTheProcessDocuments = (documents) => {
-    return documents.allDocuments.filter((element) => element.step < 4);
+    return documents.allDocuments
+      .filter((element) => element.step < 4)
+      .filter((element) => element.faculty === auth.user.faculty);
   };
-
-  console.log(inTheProcessDocuments(documents));
 
   // Tabs
   const { TabPane } = Tabs;
