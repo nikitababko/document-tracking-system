@@ -78,11 +78,13 @@ const Body = () => {
             component={isLogged ? DataBase : NotFound}
           />
 
-          <Route
-            exact
-            path="/edit_document/:id"
-            component={isAdmin ? EditDocument : NotFound}
-          />
+          {isAdmin || auth.user.position !== 'Автор' ? (
+            <Route
+              exact
+              path="/edit_document/:id"
+              component={EditDocument}
+            />
+          ) : null}
 
           <Route
             exact

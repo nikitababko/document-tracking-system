@@ -14,6 +14,8 @@ const TableTasks = ({ filteredDocuments }) => {
   };
   const ownerDocuments = filteredDocuments(documents);
 
+  // console.log(ownerDocumentsFunc(ownerDocuments));
+
   return (
     <div className="table-tasks">
       <table>
@@ -46,7 +48,7 @@ const TableTasks = ({ filteredDocuments }) => {
                 </td>
                 <td>{element.name}</td>
                 <td>{element.user.name}</td>
-                <td>{element.user.faculty}</td>
+                <td>{element.faculty}</td>
               </tr>
             ))}
       </table>
