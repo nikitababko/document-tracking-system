@@ -52,7 +52,7 @@ const EditDocument = () => {
     try {
       await axios.patch(
         `/api/edit_document/${id}`,
-        { name, secondComment },
+        { secondComment },
         {
           headers: { Authorization: token },
         }

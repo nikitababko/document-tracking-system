@@ -86,12 +86,9 @@ const DocumentController = {
 
   editDocument: async (req, res) => {
     try {
-      console.log(req.body);
-
       await DocumentModel.findOneAndUpdate(
         { _id: req.params.id },
         {
-          name: req.body.name,
           secondComment: req.body.secondComment,
         }
       );
