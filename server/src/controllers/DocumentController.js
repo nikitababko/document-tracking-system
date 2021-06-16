@@ -61,8 +61,6 @@ const DocumentController = {
         req.body.documentId
       ).populate('user', '-password');
 
-      console.log(existingDocument);
-
       res.json({
         msg: 'Документ найден!',
         existingDocument,

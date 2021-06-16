@@ -14,14 +14,18 @@ const DocumentSchema = new Schema(
     type: {
       type: String,
     },
-    position: {
-      type: String,
-    },
+    // position: {
+    //   type: String,
+    // },
     faculty: {
       type: String,
     },
     comment: {
       type: Array,
+    },
+    step: {
+      type: Number,
+      default: 0,
     },
     user: {
       type: Types.ObjectId,
