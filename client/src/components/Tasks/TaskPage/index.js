@@ -16,7 +16,7 @@ const TaskPage = () => {
 
   useEffect(() => {
     dispatch(fetchAllDocuments(token));
-  }, []);
+  }, [documents.allDocuments]);
 
   const finishedDocuments = (documents) => {
     return documents.allDocuments.filter((element) => element.step === 4);
