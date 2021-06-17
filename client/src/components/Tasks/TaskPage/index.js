@@ -31,7 +31,7 @@ const TaskPage = () => {
 
   const documentsWithComments = (documents) => {
     return documents.allDocuments.filter(
-      (element) => element.secondComment.length
+      (element) => element.secondComment
     );
   };
 
