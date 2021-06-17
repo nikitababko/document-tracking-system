@@ -16,6 +16,7 @@ const Comments = ({ filteredDocuments }) => {
           <td>Трек-номер</td>
           <td>Название документа</td>
           <td>От кого</td>
+          <td>Комментарий</td>
         </tr>
 
         {filteredDocuments(documents).map((element) => (
@@ -23,6 +24,7 @@ const Comments = ({ filteredDocuments }) => {
             <td>{element._id}</td>
             <td>{element.name}</td>
             <td>{element.secondCommentSendler}</td>
+            <td>{element.secondComment}</td>
           </tr>
         ))}
       </table>

@@ -162,8 +162,8 @@ const TaskNew = () => {
 
           {foundDocumentSize > 0 && (
             <>
-              <Button onClick={prevStep}>Prev</Button>
-              <Button onClick={nextStep}>Next</Button>
+              {/* <Button onClick={prevStep}>Prev</Button>
+              <Button onClick={nextStep}>Next</Button> */}
 
               <Table columns={columns} dataSource={data} />
               <Collapse defaultActiveKey={[]}>
@@ -186,7 +186,18 @@ const TaskNew = () => {
                       </div>
                     </div>
                     <div className="document-date">
-                      N.N.N <div>N:N</div>
+                      {documents.foundDocument.secondComment.length
+                        ? moment(documents.foundDocument.updateAt).format(
+                            'DD.MM.YYYY'
+                          )
+                        : 'N.N.N'}
+                      <div>
+                        {documents.foundDocument.secondComment.length
+                          ? moment(
+                              documents.foundDocument.updateAt
+                            ).format('hh:mm:ss')
+                          : 'N.N'}
+                      </div>
                     </div>
                     <div className="document-date">
                       N.N.N <div>N:N</div>
@@ -203,7 +214,9 @@ const TaskNew = () => {
                   </div>
                   <Steps
                     // progressDot
-                    current={1}
+                    current={
+                      documents.foundDocument.secondComment.length ? 2 : 1
+                    }
                     direction="vertical"
                   >
                     <Step
@@ -225,7 +238,16 @@ const TaskNew = () => {
                       // }
                     />
                     <Step
-                      title="Ожидание"
+                      title={
+                        documents.foundDocument.secondComment.length
+                          ? 'Завершено'
+                          : 'Ожидание'
+                      }
+                      // status={
+                      //   documents.foundDocument.secondComment.length
+                      //     ? 'Завершено'
+                      //     : 'Ожидание'
+                      // }
                       description="Документы оправлены из
         учебно-методического совета факультета
         в библиотеку."
