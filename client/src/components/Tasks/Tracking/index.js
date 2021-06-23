@@ -186,13 +186,13 @@ const TaskNew = () => {
                       </div>
                     </div>
                     <div className="document-date">
-                      {documents.foundDocument.secondComment.length
+                      {documents.foundDocument.secondComment
                         ? moment(documents.foundDocument.updateAt).format(
                             'DD.MM.YYYY'
                           )
                         : 'N.N.N'}
                       <div>
-                        {documents.foundDocument.secondComment.length
+                        {documents.foundDocument.secondComment
                           ? moment(
                               documents.foundDocument.updateAt
                             ).format('hh:mm:ss')
@@ -214,9 +214,7 @@ const TaskNew = () => {
                   </div>
                   <Steps
                     // progressDot
-                    current={
-                      documents.foundDocument.secondComment.length ? 2 : 1
-                    }
+                    current={documents.foundDocument.secondComment ? 2 : 1}
                     direction="vertical"
                   >
                     <Step
@@ -239,7 +237,7 @@ const TaskNew = () => {
                     />
                     <Step
                       title={
-                        documents.foundDocument.secondComment.length
+                        documents.foundDocument.secondComment
                           ? 'Завершено'
                           : 'Ожидание'
                       }
