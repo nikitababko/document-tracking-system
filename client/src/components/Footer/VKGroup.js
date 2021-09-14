@@ -4,9 +4,9 @@ const VKGroup = () => {
   return (
     <>
       <h3 className="footer__item-title">
-        Мы в Контакте
+        We are in VContact
         <em>
-          <p>Группа нашего университета</p>
+          <p>Group of our university</p>
         </em>
       </h3>
 
@@ -26,7 +26,7 @@ const VKGroup = () => {
                 href="https://vk.com/pk_sguwt"
                 target="_blank"
               >
-                ОФИЦИАЛЬНАЯ ГРУППА "СГУВТ"
+                OFFICIAL GROUP "SGUVT"
               </a>
             </div>
           </div>
@@ -36,7 +36,7 @@ const VKGroup = () => {
             href="https://vk.com/pk_sguwt"
             id="members_count"
           >
-            3<span className="num_delim"> </span>371 подписчик
+            3<span className="num_delim"> </span>371 followers
           </a>
 
           <div className="wcommunity_rows">
@@ -183,7 +183,7 @@ const VKGroup = () => {
 
           <div id="community_footer" className="wcommunity_footer">
             <button className="flat_button logo_button  color3_bg">
-              <i className="fab fa-vk"></i> Подписаться на новости
+              <i className="fab fa-vk"></i> Subscribe to news
             </button>
           </div>
         </div>

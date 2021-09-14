@@ -18,7 +18,7 @@ const DataBase = () => {
 
   const EMFFaculties = (arr) => {
     const newArr = arr.map((element) => {
-      if (element.faculty.includes('ЭМФ')) {
+      if (element.faculty.includes('EMF')) {
         return element;
       }
     });
@@ -27,7 +27,7 @@ const DataBase = () => {
 
   const GTFFaculties = (arr) => {
     const newArr = arr.map((element) => {
-      if (element.faculty.includes('ГТФ')) {
+      if (element.faculty.includes('GTF')) {
         return element;
       }
     });
@@ -36,7 +36,7 @@ const DataBase = () => {
 
   const IMAFaculties = (arr) => {
     const newArr = arr.map((element) => {
-      if (element.faculty.includes('ИМА')) {
+      if (element.faculty.includes('IMA')) {
         return element;
       }
     });
@@ -45,7 +45,7 @@ const DataBase = () => {
 
   const SMFFaculties = (arr) => {
     const newArr = arr.map((element) => {
-      if (element.faculty.includes('СМФ')) {
+      if (element.faculty.includes('SMF')) {
         return element;
       }
     });
@@ -54,7 +54,7 @@ const DataBase = () => {
 
   const FUFTFaculties = (arr) => {
     const newArr = arr.map((element) => {
-      if (element.faculty.includes('ФУВТ')) {
+      if (element.faculty.includes('FUVT')) {
         return element;
       }
     });
@@ -66,37 +66,27 @@ const DataBase = () => {
 
   return (
     <section className="data-base">
-      <h2>База данных всех документов</h2>
+      <h2>Database of all documents</h2>
 
       <Tabs defaultActiveKey="1" centered type="line">
-        <TabPane tab="ЭМФ" key="1">
-          <DocumentCard
-            filterFaculty={EMFFaculties(documents.allDocuments)}
-          />
+        <TabPane tab="EMF" key="1">
+          <DocumentCard filterFaculty={EMFFaculties(documents.allDocuments)} />
         </TabPane>
 
-        <TabPane tab="ГТФ" key="2">
-          <DocumentCard
-            filterFaculty={GTFFaculties(documents.allDocuments)}
-          />
+        <TabPane tab="GTF" key="2">
+          <DocumentCard filterFaculty={GTFFaculties(documents.allDocuments)} />
         </TabPane>
 
-        <TabPane tab="ИМА" key="3">
-          <DocumentCard
-            filterFaculty={IMAFaculties(documents.allDocuments)}
-          />
+        <TabPane tab="IMA" key="3">
+          <DocumentCard filterFaculty={IMAFaculties(documents.allDocuments)} />
         </TabPane>
 
-        <TabPane tab="СМФ" key="4">
-          <DocumentCard
-            filterFaculty={SMFFaculties(documents.allDocuments)}
-          />
+        <TabPane tab="SMF" key="4">
+          <DocumentCard filterFaculty={SMFFaculties(documents.allDocuments)} />
         </TabPane>
 
-        <TabPane tab="ФУВТ" key="5">
-          <DocumentCard
-            filterFaculty={FUFTFaculties(documents.allDocuments)}
-          />
+        <TabPane tab="FUVT" key="5">
+          <DocumentCard filterFaculty={FUFTFaculties(documents.allDocuments)} />
         </TabPane>
       </Tabs>
     </section>

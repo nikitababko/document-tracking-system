@@ -30,9 +30,7 @@ const TaskPage = () => {
   };
 
   const documentsWithComments = (documents) => {
-    return documents.allDocuments.filter(
-      (element) => element.secondComment
-    );
+    return documents.allDocuments.filter((element) => element.secondComment);
   };
 
   // Tabs
@@ -41,25 +39,22 @@ const TaskPage = () => {
   return (
     <div className="tasks">
       <Tabs defaultActiveKey="1" centered type="line" tabPosition="left">
-        {auth.user.position === 'Автор' && (
-          <TabPane tab="Комментарии" key="1">
+        {auth.user.position === 'Author' && (
+          <TabPane tab="Comments" key="1">
             <Comments filteredDocuments={documentsWithComments} />
           </TabPane>
         )}
 
-        <TabPane tab="Выполняются" key="2">
+        <TabPane tab="In progress" key="2">
           <TableTasks filteredDocuments={inTheProcessDocuments} />
         </TabPane>
 
-        <TabPane tab="Завершенные" key="3">
+        <TabPane tab="Completed" key="3">
           <TableTasks filteredDocuments={finishedDocuments} />
         </TabPane>
 
-        <TabPane tab="Создать" key="4">
-          <TaskCreate
-            filesArray={filesArray}
-            setFilesArray={setFilesArray}
-          />
+        <TabPane tab="Create" key="4">
+          <TaskCreate filesArray={filesArray} setFilesArray={setFilesArray} />
         </TabPane>
       </Tabs>
     </div>

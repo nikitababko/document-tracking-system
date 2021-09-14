@@ -14,8 +14,8 @@ const Home = () => {
   return (
     <div className="home">
       <h2>
-        Добро пожаловать в информационную систему документооборота ФГБОУ ВО
-        “СГУВТ”
+        Welcome to the information system of document management of the Federal
+        State Budgetary Educational Institution of Higher Education "SGUVT"
       </h2>
 
       <Carousel autoplay>

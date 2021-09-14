@@ -24,6 +24,7 @@ const EditDocument = () => {
 
   const [name, setName] = useState('');
   const [secondComment, setSecondComment] = useState('');
+  console.log(documents);
 
   useEffect(() => {
     dispatch(fetchAllDocuments(token));
@@ -87,9 +88,7 @@ const EditDocument = () => {
 
     if (auth.user.position === 'Представитель библиотеки') {
       console.log('Документы отправлены в редакционный совет факультета');
-      showSuccessMsg(
-        'Документы отправлены в редакционный совет факультета!'
-      );
+      showSuccessMsg('Документы отправлены в редакционный совет факультета!');
     }
 
     if (auth.user.position === 'Редакционный совет факультета') {
@@ -108,9 +107,9 @@ const EditDocument = () => {
       <Card hoverable style={{ width: 240 }}>
         <div className="description">
           <div className="responce-data">
-            <h2>Полученные данные: </h2>
+            <h2>Received data: </h2>
             <h3>
-              Название:{' '}
+              Name:{' '}
               <input
                 type="text"
                 name="name"
@@ -121,16 +120,16 @@ const EditDocument = () => {
             </h3>
 
             <h3>
-              Автор: <span>{filteredDocument[0].user.name}</span>
+              Author: <span>{filteredDocument[0].user.name}</span>
             </h3>
 
             <h3>
-              Факультет: <span>{filteredDocument[0].user.faculty}</span>
+              Faculty: <span>{filteredDocument[0].user.faculty}</span>
             </h3>
 
             <br />
             <p>
-              <strong>Номер: </strong>
+              <strong>Number: </strong>
               <input
                 type="text"
                 name="_id"
@@ -141,7 +140,7 @@ const EditDocument = () => {
               <br />
             </p>
             <p>
-              <strong>Загружен: </strong>
+              <strong>Loaded: </strong>
               <input
                 type="text"
                 name="createdAt"
@@ -152,7 +151,7 @@ const EditDocument = () => {
               <br />
             </p>
             <p>
-              <strong>Последнее изменение: </strong>
+              <strong>Last modified: </strong>
               <input
                 type="text"
                 name="lastModifiedDate"
@@ -165,7 +164,7 @@ const EditDocument = () => {
               <br />
             </p>
             <p>
-              <strong>Формат: .</strong>
+              <strong>Format: .</strong>
               <input
                 type="text"
                 name="type"
@@ -175,7 +174,7 @@ const EditDocument = () => {
               />
             </p>
             <p>
-              <strong>Размер: </strong>
+              <strong>Size: </strong>
               <input
                 type="text"
                 name="size"
@@ -188,7 +187,7 @@ const EditDocument = () => {
             </p>
 
             <div>
-              <strong>Комментарий: </strong>
+              <strong>Comment: </strong>
               <p>{filteredDocument[0].comment}</p>
             </div>
 
@@ -200,7 +199,7 @@ const EditDocument = () => {
                 download
               >
                 <Button type="primary" icon={<DownloadOutlined />}>
-                  Скачать
+                  Download
                 </Button>
               </Link>
 
@@ -210,7 +209,7 @@ const EditDocument = () => {
                 icon={<DeleteOutlined />}
                 onClick={handleRemove}
               >
-                Удалить
+                Delete
               </Button>
 
               {/* <Button
@@ -225,14 +224,14 @@ const EditDocument = () => {
           </div>
 
           <div className="dispatch-data">
-            <h2>Данные для отправления:</h2>
+            <h2>Data for sending:</h2>
 
             <textarea
               name=""
               id=""
               cols="50"
               rows="2"
-              placeholder="Введите свой комментарий"
+              placeholder="Enter your comment"
               value={secondComment}
               onChange={(e) => setSecondComment(e.target.value)}
             ></textarea>
@@ -242,7 +241,7 @@ const EditDocument = () => {
 
             <div className="buttons">
               <Button type="primary" icon={<DownloadOutlined />}>
-                Добавить документ
+                Add document
               </Button>
 
               <Button
@@ -250,7 +249,7 @@ const EditDocument = () => {
                 icon={<DownloadOutlined />}
                 onClick={handleEdit}
               >
-                Отправить автору на доработку
+                Send to the author for revision
               </Button>
 
               <Button
@@ -258,7 +257,7 @@ const EditDocument = () => {
                 type="primary"
                 icon={<DownloadOutlined />}
               >
-                Отправить
+                Send
               </Button>
             </div>
           </div>

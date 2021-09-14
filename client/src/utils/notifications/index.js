@@ -6,7 +6,7 @@ import './index.scss';
 export const showErrMsg = (msg) => {
   const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: 'Ошибка!',
+      message: 'Error!',
       description: msg,
     });
   };
@@ -17,7 +17,7 @@ export const showErrMsg = (msg) => {
 export const showSuccessMsg = (msg) => {
   const openNotificationWithIcon = (type) => {
     notification[type]({
-      message: 'Успешно!',
+      message: 'Success!',
       description: msg,
     });
   };

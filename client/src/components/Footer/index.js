@@ -15,9 +15,9 @@ const Footer = () => {
 
         <div className="footer__item">
           <h3 className="footer__item-title">
-            Карта
+            Map
             <em>
-              <p>место положения университета</p>
+              <p>location of the university</p>
             </em>
           </h3>
 
@@ -36,19 +36,17 @@ const Footer = () => {
 
           <div>
             <h3 className="footer__item-title">
-              ФГБОУ ВО
+              FGBOU VO
               <em>
                 <p>
-                  "Сибирский государственный <br /> университет водного
-                  <br /> транспорта"
+                  "Siberian State <br /> University of Water
+                  <br /> transport "
                 </p>
               </em>
             </h3>
 
             <p>
-              <strong>
-                Новосибирск, ул. Щетинкина, 33 (главный корпус)
-              </strong>
+              <strong>Novosibirsk, st. Schetinkina, 33 (main building)</strong>
             </p>
             <p>
               <span>
@@ -63,7 +61,7 @@ const Footer = () => {
             </p>
             <p>
               <em>
-                <strong>Приемная комиссия</strong>
+                <strong>Selection committee</strong>
               </em>
             </p>
             <p>
@@ -79,8 +77,8 @@ const Footer = () => {
             <p>
               <em>
                 <strong>
-                  Новосибирск, ул. Мичурина, 4 (Новосибирское командное
-                  речное училище им. С. И. Дежнёва)
+                  Novosibirsk, st. Michurina, 4 (Novosibirsk command river
+                  school to them. S. I. Dezhneva)
                 </strong>
               </em>
             </p>

@@ -29,20 +29,20 @@ const Header = () => {
         </Link>
         <ul className="dropdown">
           <li>
-            <Link to="/profile">Профиль</Link>
+            <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <Link to="/tasks">Задачи</Link>
+            <Link to="/tasks">Tasks</Link>
           </li>
           {user.readDB === 1 || user.role === 1 ? (
             <li>
-              <Link to="/data_base">База данных</Link>
+              <Link to="/data_base">Data base</Link>
             </li>
           ) : null}
 
           <li>
             <Link to="/" onClick={handleLogout}>
-              Выйти
+              Logout
             </Link>
           </li>
         </ul>
@@ -79,25 +79,25 @@ const Header = () => {
         <ul style={transForm}>
           <li>
             <Link to="/">
-              <i className="fas fa-home"></i> Домашная страница
+              <i className="fas fa-home"></i> Home page
             </Link>
           </li>
           <li>
             <Link to="/tracking">
-              <i className="fas fa-home"></i> Отслеживание
+              <i className="fas fa-home"></i> Tracking
             </Link>
           </li>
           {user.role === 1 && (
             <li>
               <Link to="/admin_menu">
-                <i className="fas fa-home"></i> Админ меню
+                <i className="fas fa-home"></i> Admin panel
               </Link>
             </li>
           )}
 
           <li>
             <Link to="/user_manual">
-              <i class="far fa-file-alt"></i> Руководство пользователя
+              <i class="far fa-file-alt"></i> User guide
             </Link>
           </li>
           {isLogged ? (
@@ -105,7 +105,7 @@ const Header = () => {
           ) : (
             <li>
               <Link to="/login">
-                <i className="fas fa-user"></i> Войти
+                <i className="fas fa-user"></i> Login
               </Link>
             </li>
           )}

@@ -98,7 +98,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="left-content">
-        <h2>Авторизация</h2>
+        <h2>Authorization</h2>
 
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
@@ -108,7 +108,7 @@ const Login = () => {
             <label htmlFor="email">Email</label>
             <input
               type="text"
-              placeholder="Введите email"
+              placeholder="Enter email"
               id="email"
               value={email}
               name="email"
@@ -117,10 +117,10 @@ const Login = () => {
           </div>
 
           <div>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              placeholder="Введите пароль"
+              placeholder="Enter password"
               id="password"
               value={password}
               name="password"
@@ -129,8 +129,8 @@ const Login = () => {
           </div>
 
           <div className="row">
-            <button type="submit">Войти</button>
-            <Link to="/forgot_password">Забыли пароль?</Link>
+            <button type="submit">Login</button>
+            <Link to="/forgot_password">Forgot your password?</Link>
           </div>
         </form>
 
@@ -154,7 +154,7 @@ const Login = () => {
         </div> */}
 
         <p>
-          Новый пользователь? <Link to="/register">Регистрация</Link>
+          New user? <Link to="/register">Registration</Link>
         </p>
       </div>
 

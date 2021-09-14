@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { isLength, isMatch } from 'utils/validations';
 import { showSuccessMsg, showErrMsg } from 'utils/notifications';
-import {
-  fetchAllUsers,
-  dispatchGetAllUsers,
-} from 'redux/actions/userAction';
+import { fetchAllUsers, dispatchGetAllUsers } from 'redux/actions/userAction';
 
 import './index.scss';
 
@@ -30,8 +27,7 @@ const AdminMenu = () => {
 
   const { user, isAdmin } = auth;
   const [data, setData] = useState(initialState);
-  const { name, password, cf_password, err, success, faculty, position } =
-    data;
+  const { name, password, cf_password, err, success, faculty, position } = data;
 
   const [avatar, setAvatar] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -110,7 +106,7 @@ const AdminMenu = () => {
         }
       );
 
-      setData({ ...data, err: '', success: 'Обновление успешно!' });
+      setData({ ...data, err: '', success: 'Update successful!' });
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: '' });
     }
@@ -154,9 +150,7 @@ const AdminMenu = () => {
   const handleDelete = async (id) => {
     try {
       if (user._id !== id) {
-        if (
-          window.confirm('Вы уверены, что хотите удалить этот аккаунт?')
-        ) {
+        if (window.confirm('Вы уверены, что хотите удалить этот аккаунт?')) {
           setLoading(true);
           await axios.delete(`/user/delete/${id}`, {
             headers: { Authorization: token },
@@ -179,19 +173,19 @@ const AdminMenu = () => {
       </div>
       <div className="profile-page">
         <div className="col-right">
-          <h2>Пользователи</h2>
+          <h2>Users</h2>
 
           <div style={{ overflowX: 'auto' }}>
             <table className="customers">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Имя</th>
+                  <th>Name</th>
                   <th>Email</th>
-                  <th>Админ</th>
-                  <th>Действие с пользователем</th>
-                  <th>Изменение БД</th>
-                  <th>Чтение БД</th>
+                  <th>Admin</th>
+                  <th>User action</th>
+                  <th>Edit DB</th>
+                  <th>Read DB</th>
                 </tr>
               </thead>
               <tbody>

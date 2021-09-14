@@ -114,14 +114,8 @@
 ## <a name="screenshots">Screenshots</a>
 
 <div align="center">
-  <h3 style="margin-top: 50px; font-size: 35px">Admin page</h3>
-  <img src="screenshots/admin-page.JPG" />
-
-  <h3 style="margin-top: 50px; font-size: 35px">Home with login</h3>
-  <img src="screenshots/with-login.JPG" />
-
-  <h3 style="margin-top: 50px; font-size: 35px">Home without login</h3>
-  <img src="screenshots/without-login.JPG" />
+  <h3 style="margin-top: 50px; font-size: 35px">Home</h3>
+  <img src="screenshots/home.JPG" />
 
   <h3 style="margin-top: 50px; font-size: 35px">Login</h3>
   <img src="screenshots/login.JPG" />
@@ -129,11 +123,22 @@
   <h3 style="margin-top: 50px; font-size: 35px">Register</h3>
   <img src="screenshots/register.JPG" />
 
-  <h3 style="margin-top: 50px; font-size: 35px">Validate register</h3>
-  <img src="screenshots/validate-register.JPG" />
+  <h3 style="margin-top: 50px; font-size: 35px">Admin panel</h3>
+  <img src="screenshots/admin-panel.JPG" />
 
-  <h3 style="margin-top: 50px; font-size: 35px">Forgot password</h3>
-  <img src="screenshots/forgot-password.JPG" />
+  <h3 style="margin-top: 50px; font-size: 35px">Edit own profile</h3>
+  <img src="screenshots/edit-own-profile.JPG" />
+
+  <h3 style="margin-top: 50px; font-size: 35px">Tracking document</h3>
+  <img src="screenshots/tracking-document.JPG" />
+
+  <h3 style="margin-top: 50px; font-size: 35px">Tasks</h3>
+  <img src="screenshots/tasks.JPG" />
+
+  <h3 style="margin-top: 50px; font-size: 35px">All documents</h3>
+  <img src="screenshots/all-documents.JPG" />
+
+  <h3 style="margin-top: 50px; font-size: 35px">Document</h3>
+  <img src="screenshots/document.JPG" />
+
 </div>
-
-## Problems

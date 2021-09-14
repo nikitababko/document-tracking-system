@@ -8,16 +8,12 @@ const TableTasks = ({ filteredDocuments }) => {
   const { documents, auth } = useSelector((state) => state);
 
   const authorDocumentsFunc = (documents) => {
-    return documents.filter(
-      (element) => element.user._id === auth.user._id
-    );
+    return documents.filter((element) => element.user._id === auth.user._id);
   };
   const authorDocuments = filteredDocuments(documents);
 
   const noAuthorDocumentsFunc = (documents) => {
-    return documents.filter(
-      (element) => element.faculty === auth.user.faculty
-    );
+    return documents.filter((element) => element.faculty === auth.user.faculty);
   };
   const noAuthorDocuments = filteredDocuments(documents);
 
@@ -29,10 +25,10 @@ const TableTasks = ({ filteredDocuments }) => {
     <div className="table-tasks">
       <table>
         <tr>
-          <td>Трек-номер</td>
-          <td>Название документа</td>
-          <td>ФИО автора</td>
-          <td>Факультет</td>
+          <td>Track number</td>
+          <td>Doucment name</td>
+          <td>Author full name</td>
+          <td>Faculty</td>
         </tr>
 
         {auth.user.position === 'Автор' && auth.user.role !== 1

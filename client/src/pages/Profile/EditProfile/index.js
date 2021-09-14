@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { isLength, isMatch } from 'utils/validations';
 import { showSuccessMsg, showErrMsg } from 'utils/notifications';
-import {
-  fetchAllUsers,
-  dispatchGetAllUsers,
-} from 'redux/actions/userAction';
+import { fetchAllUsers, dispatchGetAllUsers } from 'redux/actions/userAction';
 
 import initials from '../../../utils/initials';
 
@@ -32,8 +29,7 @@ const Profile = () => {
 
   const { user, isAdmin } = auth;
   const [data, setData] = useState(initialState);
-  const { name, password, cf_password, err, success, faculty, position } =
-    data;
+  const { name, password, cf_password, err, success, faculty, position } = data;
 
   const [avatar, setAvatar] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -112,7 +108,7 @@ const Profile = () => {
         }
       );
 
-      setData({ ...data, err: '', success: 'Обновление успешно!' });
+      setData({ ...data, err: '', success: 'Update successful!' });
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: '' });
     }
@@ -156,9 +152,7 @@ const Profile = () => {
   const handleDelete = async (id) => {
     try {
       if (user._id !== id) {
-        if (
-          window.confirm('Вы уверены, что хотите удалить этот аккаунт?')
-        ) {
+        if (window.confirm('Are you sure you want to delete this account?')) {
           setLoading(true);
           await axios.delete(`/user/delete/${id}`, {
             headers: { Authorization: token },
@@ -177,17 +171,17 @@ const Profile = () => {
       <div>
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
-        {loading && <h3>Загрузка.....</h3>}
+        {loading && <h3>Downloading.....</h3>}
       </div>
       <div className="profile-page">
         <div className="col-left">
-          <h2>{isAdmin ? 'Админ' : 'Пользователь'}</h2>
+          <h2>{isAdmin ? 'Admin' : 'User'}</h2>
 
           <div className="avatar">
             <img src={avatar ? avatar : user.avatar} alt="" />
             <span>
               <i className="fas fa-camera"></i>
-              <p>Изменить</p>
+              <p>Edit</p>
               <input
                 type="file"
                 name="file"
@@ -198,13 +192,13 @@ const Profile = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="name">Имя</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               name="name"
               id="name"
               defaultValue={user.name}
-              placeholder="Ваше имя"
+              placeholder="Your name"
               onChange={handleChange}
             />
           </div>
@@ -216,59 +210,59 @@ const Profile = () => {
               name="email"
               id="email"
               defaultValue={user.email}
-              placeholder="Ваш email"
+              placeholder="Your email"
               disabled
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Новый пароль</label>
+            <label htmlFor="password">New password</label>
             <input
               type="password"
               name="password"
               id="password"
-              placeholder="Ваш пароль"
+              placeholder="Your Password"
               value={password}
               onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="cf_password">Подтвердите свой пароль</label>
+            <label htmlFor="cf_password">Confirm your password</label>
             <input
               type="password"
               name="cf_password"
               id="cf_password"
-              placeholder="Подвтердите пароль"
+              placeholder="Confirm password"
               value={cf_password}
               onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="faculty">Факультет</label>
+            <label htmlFor="faculty">Faculty</label>
             <input
               name="faculty"
               id="faculty"
-              placeholder="Факультет"
+              placeholder="Faculty"
               defaultValue={user.faculty}
               onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="position">Позиция</label>
+            <label htmlFor="position">Position</label>
             <input
               name="position"
               id="position"
-              placeholder="Позиция"
+              placeholder="Position"
               defaultValue={user.position}
               onChange={handleChange}
             />
           </div>
 
           <button disabled={loading} onClick={handleUpdate}>
-            Обновить
+            Update
           </button>
         </div>
 

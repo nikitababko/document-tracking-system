@@ -87,16 +87,16 @@ const Register = () => {
   return (
     <div className="login-page">
       <div className="left-content">
-        <h2>Регистрация</h2>
+        <h2>Registration</h2>
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
 
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">ФИО</label>
+            <label htmlFor="name">Fullname</label>
             <input
               type="text"
-              placeholder="Введите ФИО"
+              placeholder="Enter Fullname"
               id="name"
               value={name}
               name="name"
@@ -108,7 +108,7 @@ const Register = () => {
             <label htmlFor="email">Email</label>
             <input
               type="text"
-              placeholder="Введите email"
+              placeholder="Enter email"
               id="email"
               value={email}
               name="email"
@@ -117,10 +117,10 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              placeholder="Введите пароль"
+              placeholder="Enter password"
               id="password"
               value={password}
               name="password"
@@ -129,10 +129,10 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="cf_password">Повторите пароль</label>
+            <label htmlFor="cf_password">Confirm password</label>
             <input
               type="password"
-              placeholder="Повторите пароль"
+              placeholder="Confirm password"
               id="cf_password"
               value={cf_password}
               name="cf_password"
@@ -141,7 +141,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="cf_password">Ваш контактный номер</label>
+            <label htmlFor="cf_password">Your phone</label>
             <input
               type="phone"
               placeholder="8-913-567-45-42"
@@ -153,7 +153,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="faculty">Выбор факультета</label>
+            <label htmlFor="faculty">Faculty selection</label>
 
             <select
               id="faculty"
@@ -163,18 +163,18 @@ const Register = () => {
               required
             >
               <option value="" selected disabled hidden>
-                Выбор факультета
+                Faculty selection
               </option>
-              <option value="ГТФ">ГТФ</option>
-              <option value="ИМА">ИМА</option>
-              <option value="СМФ">СМФ</option>
-              <option value="ФУВТ">ФУВТ</option>
-              <option value="ЭМФ">ЭМФ</option>
+              <option value="GTF">GTF</option>
+              <option value="IMA">IMA</option>
+              <option value="SMF">SMF</option>
+              <option value="FUVT">FUVT</option>
+              <option value="EMF">EMF</option>
             </select>
           </div>
 
           <div>
-            <label htmlFor="position">Позиция</label>
+            <label htmlFor="position">Position</label>
 
             <select
               id="position"
@@ -184,34 +184,35 @@ const Register = () => {
               required
             >
               <option value="" selected disabled hidden>
-                Позиция
+                Position
               </option>
-              <option value="Автор">Автор</option>{' '}
-              <option value="Представитель учебно-методического совета факультета">
-                Представитель учебно-методического совета факультета
+              <option value="Автор">Author</option>{' '}
+              <option value="Representative of the educational and methodological council of the faculty">
+                Representative of the educational and methodological council of
+                the faculty
               </option>
-              <option value="Представитель библиотеки">
-                Представитель библиотеки
+              <option value="Library representative">
+                Library representative
               </option>
-              <option value="Представитель редакционного совета факультета">
-                Представитель редакционного совета факультета
+              <option value="Representative of the editorial board of the faculty">
+                Representative of the editorial board of the faculty
               </option>
-              <option value="Представитель редакции">
-                Представитель редакции
+              <option value="Editorial Representative">
+                Editorial Representative
               </option>
-              <option value="Представитель типографии">
-                Представитель типографии
+              <option value="Typography representative">
+                Typography representative
               </option>
             </select>
           </div>
 
           <div className="row">
-            <button type="submit">Зарегестрироваться</button>
+            <button type="submit">Register now</button>
           </div>
         </form>
 
         <p>
-          Уже есть аккаунт? <Link to="/login">Войти</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
 

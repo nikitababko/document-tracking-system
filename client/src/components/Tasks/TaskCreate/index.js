@@ -78,41 +78,41 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
 
   return (
     <div className="tasks__create">
-      <h2 className="title">Загрузите документы для отправки отправки</h2>
+      <h2 className="title">Upload documents to send sending</h2>
       <div>
         <div className="tasks__create-inner">
           <div className="input-wrapper">
             <input type="file" onChange={onFileChange} />
-            {!selectedFile && <span className="text">Файл не выбран</span>}
+            {!selectedFile && <span className="text">No file selected</span>}
           </div>
 
           <label>
-            Введите свой комметарий
+            Enter your comment
             <textarea onChange={(e) => setComment(e.target.value)} />
           </label>
 
           <div className="checkboxes">
-            Макет:{' '}
+            Maket:{' '}
             <Radio.Group onChange={onChange} value={check}>
-              <Radio value={1}>Да</Radio>
-              <Radio value={2}>Нет</Radio>
+              <Radio value={1}>Yes</Radio>
+              <Radio value={2}>No</Radio>
             </Radio.Group>
           </div>
 
           <div className="buttons">
-            <button className="btn">Отмена</button>
+            <button className="btn">Cancel</button>
             <button className="btn" onClick={onFileUpload}>
-              Отправить
+              Send
             </button>
           </div>
         </div>
 
         <table>
           <tr>
-            <td>Название</td>
-            <td>Последнее изменение</td>
-            <td>Размер</td>
-            <td>Тип</td>
+            <td>Name</td>
+            <td>Last modified</td>
+            <td>Size</td>
+            <td>Type</td>
           </tr>
 
           {filesArray.length
@@ -125,11 +125,9 @@ const TaskCreate = ({ filesArray, setFilesArray }) => {
                     )}
                   </td>
 
+                  <td>{Math.ceil((element.size / 1024) * 100) / 100} Kbyte</td>
                   <td>
-                    {Math.ceil((element.size / 1024) * 100) / 100} Кбайт
-                  </td>
-                  <td>
-                    документ {selectedFile ? transformType(element) : null}
+                    document {selectedFile ? transformType(element) : null}
                   </td>
                 </tr>
               ))

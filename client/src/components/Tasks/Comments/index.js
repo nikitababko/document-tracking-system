@@ -7,16 +7,14 @@ import './index.scss';
 const Comments = ({ filteredDocuments }) => {
   const { token, documents, auth } = useSelector((state) => state);
 
-  console.log(documents);
-
   return (
     <div className="comments">
       <table>
         <tr>
-          <td>Трек-номер</td>
-          <td>Название документа</td>
-          <td>От кого</td>
-          <td>Комментарий</td>
+          <td>Track number</td>
+          <td>Document name</td>
+          <td>From whom</td>
+          <td>Comments</td>
         </tr>
 
         {filteredDocuments(documents).map((element) => (

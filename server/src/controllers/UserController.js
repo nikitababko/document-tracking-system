@@ -158,22 +158,18 @@ const UserController = {
         return res.status(400).json({ msg: 'Войдите, пожалуйста!' });
       }
 
-      jwt.verify(
-        rf_token,
-        process.env.REFRESH_TOKEN_SECRET,
-        (err, user) => {
-          if (err) {
-            return res.status(400).json({ msg: 'Войдите, пожалуйста!' });
-          }
-
-          const access_token = createAccessToken({
-            id: user.id,
-          });
-          res.json({
-            access_token,
-          });
+      jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+        if (err) {
+          return res.status(400).json({ msg: 'Войдите, пожалуйста!' });
         }
-      );
+
+        const access_token = createAccessToken({
+          id: user.id,
+        });
+        res.json({
+          access_token,
+        });
+      });
     } catch (err) {
       return res.status(500).json({
         msg: err.message,
@@ -226,9 +222,7 @@ const UserController = {
   // Get user info
   getUserInfo: async (req, res) => {
     try {
-      const user = await UserModel.findById(req.user.id).select(
-        '-password'
-      );
+      const user = await UserModel.findById(req.user.id).select('-password');
 
       res.json(user);
     } catch (err) {

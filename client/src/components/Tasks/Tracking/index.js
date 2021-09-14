@@ -40,7 +40,7 @@ const ModalAuthor = ({ user }) => {
         {user.name}
       </a>
       <Modal
-        title="Карточка пользователя"
+        title="User card"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -55,10 +55,10 @@ const ModalAuthor = ({ user }) => {
                   Email: <span>{user.email}</span>
                 </p>
                 <p>
-                  Телефон: <span>{user.phone}</span>
+                  Phone: <span>{user.phone}</span>
                 </p>
                 <p>
-                  Факультет: <span>{user.faculty}</span>
+                  Faculty: <span>{user.faculty}</span>
                 </p>
               </>
             }
@@ -111,25 +111,23 @@ const TaskNew = () => {
   // Table
   const columns = [
     {
-      title: 'Номер',
+      title: 'Number',
       dataIndex: '_id',
       key: '_id',
     },
     {
-      title: 'Дата',
+      title: 'Data',
       dataIndex: 'createdAt',
       key: 'createdAt',
     },
     {
-      title: 'Автор',
+      title: 'Author',
       dataIndex: 'user',
       key: 'user',
-      render: (text) => (
-        <ModalAuthor user={documents.foundDocument.user} />
-      ),
+      render: (text) => <ModalAuthor user={documents.foundDocument.user} />,
     },
     {
-      title: 'Статус',
+      title: 'Status',
       key: 'status',
       dataIndex: 'status',
     },
@@ -143,8 +141,7 @@ const TaskNew = () => {
         'DD.MM.YYYY, hh:mm:ss'
       ),
       user: foundDocumentSize && documents.foundDocument.user.name,
-      status:
-        documents.foundDocument.step === 4 ? 'Завершен' : 'Выполняется',
+      status: documents.foundDocument.step === 4 ? 'Completed' : 'Performed',
     },
   ];
 
@@ -152,10 +149,10 @@ const TaskNew = () => {
     <div className="task__new">
       <div className="block-document">
         <div className="follow">
-          <h2>Отслеживание</h2>
+          <h2>Tracking</h2>
 
           <Search
-            placeholder="Поиск документа"
+            placeholder="Search document"
             onSearch={handleSearch}
             enterButton
           />
@@ -167,9 +164,9 @@ const TaskNew = () => {
 
               <Table columns={columns} dataSource={data} />
               <Collapse defaultActiveKey={[]}>
-                <Panel header="Путь документа" key="1">
+                <Panel header="Document path tracking" key="1">
                   <div className="author-name">
-                    <span className="author-name__title">Автор</span>
+                    <span className="author-name__title">Author</span>
                     <div className="author-name__fio">
                       {documents.foundDocument.user.name}
                     </div>
@@ -193,9 +190,9 @@ const TaskNew = () => {
                         : 'N.N.N'}
                       <div>
                         {documents.foundDocument.secondComment
-                          ? moment(
-                              documents.foundDocument.updateAt
-                            ).format('hh:mm:ss')
+                          ? moment(documents.foundDocument.updateAt).format(
+                              'hh:mm:ss'
+                            )
                           : 'N.N'}
                       </div>
                     </div>
@@ -221,11 +218,11 @@ const TaskNew = () => {
                       className="step-invisible"
                       title={
                         documents.foundDocument.step === 0
-                          ? 'Завершено'
-                          : 'Ожидание'
+                          ? 'Completed'
+                          : 'Pending'
                       }
-                      description="Автор отправил документы 
-        в учебно-методический совет факультета."
+                      description="Author sent documents
+                      to the educational and methodological council of the faculty."
                       // icon={<img src={documentSvg} />}
                       // status={
                       //   stepState === 0
@@ -238,44 +235,44 @@ const TaskNew = () => {
                     <Step
                       title={
                         documents.foundDocument.secondComment
-                          ? 'Завершено'
-                          : 'Ожидание'
+                          ? 'Completed'
+                          : 'Pending'
                       }
                       // status={
                       //   documents.foundDocument.secondComment.length
-                      //     ? 'Завершено'
-                      //     : 'Ожидание'
+                      //     ? 'Completed'
+                      //     : 'Pending'
                       // }
-                      description="Документы оправлены из
-        учебно-методического совета факультета
-        в библиотеку."
+                      description="Documents sent from
+                      educational and methodological council of the faculty
+                      to the library."
                     />
                     <Step
-                      title="Ожидание"
-                      description="Документы оправлены из
-        библиотеки в редакционный совет
-        университета."
+                      title="Pending"
+                      description="Documents sent from
+                      libraries to the editorial board
+                      university."
                     />
                     <Step
-                      title="Ожидание"
-                      description="Документы оправлены из
-                  редакционного совета университета 
-                  к заведующему библиотекой."
+                      title="Pending"
+                      description="Documents sent from
+                      university editorial board
+                      to the head of the library."
                     />
                     <Step
-                      title="Ожидание"
-                      description="Документы оправлены  от заведующего
-                  библиотекой в редакцию."
+                      title="Pending"
+                      description="The documents were sent from the manager
+                      library to the editor."
                     />
                     <Step
-                      title="Ожидание"
-                      description="Документы оправлены  из редакции
-                  в типографию."
+                      title="Pending"
+                      description="Documents sent from the editorial office
+                      to the printing house."
                     />
                     <Step
-                      title="Ожидание"
-                      description="Документы оправлены  из редакции
-                  в типографию."
+                      title="Pending"
+                      description="Documents sent from the editorial office
+                      to the printing house."
                     />
                   </Steps>
                 </Panel>

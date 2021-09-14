@@ -48,30 +48,30 @@ const DocumentCard = ({ filterFaculty }) => {
           cover={<img alt="Document image" src={documentImage} />}
         >
           <div className="description">
-            <h3>Статус:</h3> {item.step === 4 ? 'Завершен' : 'Выполняется'}
+            <h3>Status:</h3> {item.step === 4 ? 'Completed' : 'In progress'}
             <br />
-            <h3>Название:</h3> {item.name}
+            <h3>Name:</h3> {item.name}
             <br />
             <br />
             <p>
-              <strong>Номер:</strong> <br />
+              <strong>Number:</strong> <br />
               {item._id}
             </p>
             <p>
-              <strong>Загружен:</strong>
+              <strong>Loaded:</strong>
               <br />
               {moment(item.createdAt).format('DD.MM.YYYY, hh:mm:ss')}
             </p>
             <p>
-              <strong>Последнее изменение:</strong>
+              <strong>Last modified:</strong>
               <br />
               {moment(item.lastModified).format('DD.MM.YYYY, hh:mm:ss')}
             </p>
             <p>
-              <strong>Формат:</strong> <br />.{item.type}
+              <strong>Format:</strong> <br />.{item.type}
             </p>
             <p>
-              <strong>Размер:</strong> <br />{' '}
+              <strong>Size:</strong> <br />{' '}
               {Math.ceil((item.size / 1024) * 100) / 100} Кб
             </p>
           </div>
@@ -84,7 +84,7 @@ const DocumentCard = ({ filterFaculty }) => {
               download
             >
               <Button type="primary" icon={<DownloadOutlined />}>
-                Скачать
+                Download
               </Button>
             </Link>
 
@@ -101,7 +101,7 @@ const DocumentCard = ({ filterFaculty }) => {
                   value={item._id}
                   ref={inputRef}
                 />
-                Удалить
+                Delete
               </Button>
             ) : null}
           </div>
